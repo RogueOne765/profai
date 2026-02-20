@@ -21,7 +21,7 @@ class DocumentRepositoryClient():
     async def load_repository(self,):
         try:
             tasks = [self.get_file(url) for url in self.urls]
-            documents = await asyncio.gather(*tasks)
+            await asyncio.gather(*tasks)
             return self.downloaded_files
 
         except Exception as e:

@@ -1,8 +1,11 @@
 from chat.standard_messages import StandardMessages
-from prompt import ChainPrompt
+from chat.prompt import ChainPrompt
+from rag import rag_system
 from rag.rag_system import RAGSystem
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
+from llama_index.readers.file import PDFReader
+from utils import is_colab
 
 
 class ChatAgent():
@@ -13,7 +16,7 @@ class ChatAgent():
         """
         Inizializza client LLM e chain con LangChain
         """
-        if not isinstance(rag_system, RAGSystem):
+        if rag_system and not isinstance(rag_system, RAGSystem):
             raise ValueError("rag_system must be a RAGSystem object")
 
         self.rag_system = rag_system
@@ -27,24 +30,53 @@ class ChatAgent():
 
         self.messages = StandardMessages()
 
-    def start_chatbot(self):
-        """Avvia chat con l'utente"""
-
-        self.messages.welcome()
-
+    def _catch_user_input(self):
+        """ Aspetta input utente """
         while True:
             question = input("Tu: ").strip()
 
-            if question.lower() in ['exit', 'quit', 'esci']:
-                print("Arrivederci!")
+            if question.lower() in ['exit']:
+                self.messages.goodbye()
+                break
+
+            if question.lower() in ["upload"]:
+                self._catch_user_file_upload()
                 break
 
             if not question:
-                print("Bot: Per favore scrivi qualcosa!")
+                self.messages.wrong_bitch()
                 continue
 
             answer = self.ask_agent(question)
-            print(f"Bot: {answer}")
+
+            if answer:
+                self.messages.bot_answer(answer)
+            else:
+                self.messages.generic_error()
+
+    def start_chatbot(self):
+        """Avvia chat con l'utente"""
+
+        if self.rag_system:
+            self.messages.welcome_rag_enabled()
+        else:
+            self.messages.welcome_rag_disabled()
+
+        self._catch_user_input()
+
+    def _catch_user_file_upload(self):
+        """Avvia interazione caricamento file"""
+
+        while True:
+            if is_colab():
+                from google.colab import files
+                uploaded = files.upload()
+                filename = list(uploaded.keys())[0]
+            else:
+                filename = input("Inserisci il percorso del file PDF: ")
+
+            self.generate_report(filename)
+
 
     def ask_agent(self, query):
         """
@@ -56,12 +88,15 @@ class ChatAgent():
             raise ValueError("query must not be empty")
 
         try:
-            context_results = self.rag_system.retrieve(query)
+            context = ""
 
-            if len(context_results) == 0:
-                return "Non ho trovato nulla su questo argomento"
+            if rag_system:
+                context_results = self.rag_system.retrieve(query)
 
-            context = "\n---\n".join([res.text for res in context_results])
+                if len(context_results) == 0:
+                    self.messages.no_results()
+
+                context = "\n---\n".join([res.text for res in context_results])
 
             chain = self.prompts.simple_query() | self.llm | StrOutputParser()
             answer = chain.invoke({"context": context, "question": query})
@@ -71,16 +106,39 @@ class ChatAgent():
         except Exception as e:
             raise Exception(f"Error asking agent: {e}")
 
+    def extract_text_from_pdf(self, file):
+        try:
+            reader = PDFReader()
+            documents = reader.load_data(file=file)
+            return "\n".join([doc.text for doc in documents])
+        except Exception as e:
+            raise Exception(f"Error extracting text: {e}")
+
+
     def generate_report(self, file):
         """ Metodo per generazione report strutturato a partire da file """
         if not file:
             raise ValueError("file must be provided")
 
         try:
-            chain = self.prompts.report() | self.llm | StrOutputParser()
-            answer = chain.invoke({"file": file})
+            content = self.extract_text_from_pdf(file)
 
-            return answer
+            if not content:
+                self.messages.no_content_extracted()
+                return
+
+            chain = self.prompts.report() | self.llm | StrOutputParser()
+            answer = chain.invoke({"content": content})
+
+            if answer:
+                self.messages.bot_answer(answer)
+            else:
+                self._reset_after_error()
+
 
         except Exception as e:
             raise Exception(f"Error during report generation: {e}")
+
+    def _reset_after_error(self):
+        self.messages.generic_error()
+        self._catch_user_input()

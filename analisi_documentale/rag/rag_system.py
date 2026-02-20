@@ -11,7 +11,7 @@ from llama_index.core.retrievers import (
     KeywordTableSimpleRetriever,
 )
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from chroma_client import ChromaClient
+from rag.chroma_client import ChromaClient
 from rag.custom_retriever import CustomRetriever
 
 class RAGSystem():
@@ -27,8 +27,11 @@ class RAGSystem():
         self.documents = []
 
         try:
-
-            #Settings.llm = None
+            """
+            La classe SimpleKeywordTableIndex durante inizializzazione cerca api key di llm default per langchain (open ai)
+            Disabilitato per evitare che sollevi eccezione
+            """
+            Settings.llm = None
 
             # setta embedding model
             embed_model = HuggingFaceEmbedding(

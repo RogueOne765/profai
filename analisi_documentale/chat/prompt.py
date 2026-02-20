@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+
 class ChainPrompt:
 
     def simple_query(self):
@@ -19,21 +20,22 @@ class ChainPrompt:
             Utilizza solo il contenuto del file per rispondere. Se il file non contiene le informazioni 
             richieste per generare il report rispondi spiegando il problema
             
-            L'output deve essere XML con la seguente struttura 
-            <report>
-                <compliance>Qui inserire analisi su compliance</compliance>
-                <performance>Qui inserire analisi su performance finanziaria</performance>
-                <rischi>Qui inserire analisi su rischi</rischi>
-            </report>
+            L'output rispettare la seguente struttura:
             
-            Rispondi solo con struttura xlm indicata, non aggiungere riflessioni o indicazioni su come hai ottenuto il risultato
+            Area Compliance:
+                qui analisi su compliance
+            Area Performance finanziaria:
+                qui analisi su performance
+            Area Rischi:
+                qui area rischi
+                            
+            Rispondi solo con lA struttura indicata, non aggiungere riflessioni o indicazioni su come hai ottenuto il risultato
             
-            Se ci sono problemi, per esempio il file passato non riguarda un report finanziario, rispondi con una struttura
-            simil XML di questo tipo:
-            <error>Qui descrizione del problema per cui non è stato possibile generare analisi</error>
+            Se ci sono problemi, per esempio il file passato non riguarda un report finanziario, rispondi che non hai potuto
+            effettuare l'analisi spiegando i motivi.
         """
 
         return ChatPromptTemplate.from_messages([
             ("system", report_system_prompt),
-            ("human", "File: {file}"),
+            ("human", "File: {content}"),
         ])
