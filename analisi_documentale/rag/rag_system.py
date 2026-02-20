@@ -28,9 +28,9 @@ class RAGSystem():
 
         try:
 
-            Settings.llm = None
+            #Settings.llm = None
 
-            #setta embedding model
+            # setta embedding model
             embed_model = HuggingFaceEmbedding(
                 model_name="sentence-transformers/all-MiniLM-L6-v2"
             )
@@ -46,7 +46,7 @@ class RAGSystem():
             self.vector_index = None
             self._init_vector_store()
 
-            #inizializza index e custom retrieval
+            #inizializza index
             self.retrieval = None
             self.vector_index = None
             self.keyword_index = None
