@@ -3,3 +3,4 @@
 .env
 chroma_db
 temp_downloads
+logs

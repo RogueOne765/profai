@@ -11,6 +11,8 @@ from llama_index.core.retrievers import (
     KeywordTableSimpleRetriever,
 )
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+
+from app_logger import LoggerHandler
 from rag.chroma_client import ChromaClient
 from rag.custom_retriever import CustomRetriever
 
@@ -26,6 +28,9 @@ class RAGSystem():
         self.document_path_list = documents
         self.documents = []
 
+        self.app_logger = LoggerHandler().get_app_logger(__name__)
+        self.app_logger.debug(f"Inizializzazione RAGSystem su {len(documents)} documenti")
+
         try:
             """
             La classe SimpleKeywordTableIndex durante inizializzazione cerca api key di llm default per langchain (open ai)
@@ -40,7 +45,7 @@ class RAGSystem():
             Settings.embed_model = embed_model
 
             # Legge i file
-            print("Lettura dei documenti e creazione embeddings in corso...")
+            self.app_logger.debug("Lettura dei documenti e creazione embeddings in corso...")
             self.documents = SimpleDirectoryReader(input_files=self.document_path_list).load_data()
 
             # inizializzazione db vettoriale
@@ -68,6 +73,8 @@ class RAGSystem():
 
     def _init_vector_store(self):
         """Recupera collection e setta storage_context"""
+        self.app_logger.debug("Recupero collection e creazione storage_context...")
+
         collection = self.chroma_client.get_collection("company_docs")
         vector_store = ChromaVectorStore(chroma_collection=collection)
 
@@ -75,12 +82,15 @@ class RAGSystem():
 
     def _create_indexes(self):
         """Inizializza indexes"""
+        self.app_logger.debug("Inizializzazione vector_index e keyword_index...")
+
         self.vector_index = VectorStoreIndex.from_documents(
             self.documents, storage_context=self.storage_context
         )
         self.keyword_index = SimpleKeywordTableIndex.from_documents(self.documents, storage_context=self.storage_context)
 
     def _create_retrieval(self):
+        self.app_logger.debug("Inizializzazione retriever...")
         self.vector_retriever = VectorIndexRetriever(index=self.vector_index, similarity_top_k=10)
         self.keyword_retriever = KeywordTableSimpleRetriever(index=self.keyword_index)
         self.custom_retriever = CustomRetriever(self.vector_retriever, self.keyword_retriever)

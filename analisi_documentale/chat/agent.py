@@ -17,7 +17,7 @@ class ChatAgent():
         Inizializza client LLM e chain con LangChain
         """
         if rag_system and not isinstance(rag_system, RAGSystem):
-            raise ValueError("rag_system must be a RAGSystem object")
+            raise ValueError("rag_system must be a RAGSystem instance")
 
         self.max_input_tokens = max_input_tokens
 
@@ -49,12 +49,7 @@ class ChatAgent():
                 self.printer.wrong_bitch()
                 continue
 
-            answer = self.ask_agent(question)
-
-            if answer:
-                self.printer.bot_answer(answer)
-            else:
-                self.printer.generic_error()
+            self.ask_agent(question)
 
     def start_chatbot(self):
         """Avvia chat con l'utente"""
@@ -90,6 +85,11 @@ class ChatAgent():
             raise ValueError("query must not be empty")
 
         try:
+
+            if count_tokens(query) > self.max_input_tokens:
+                self.printer.max_input_tokens()
+                return
+
             context = ""
 
             if rag_system:
@@ -103,7 +103,10 @@ class ChatAgent():
             chain = self.prompts.simple_query() | self.llm | StrOutputParser()
             answer = chain.invoke({"context": context, "question": query})
 
-            return answer
+            if answer:
+                self.printer.bot_answer(answer)
+            else:
+                self.printer.generic_error()
 
         except Exception as e:
             raise Exception(f"Error asking agent: {e}")

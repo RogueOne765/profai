@@ -1,5 +1,5 @@
 import asyncio
-from ai_system import AiSystem, SystemConfig
+from ai_system import AISystem, SystemConfig
 
 
 if __name__ == '__main__':
@@ -15,9 +15,9 @@ if __name__ == '__main__':
     config = SystemConfig(
         repo_urls=urls,
         temp_download_dir=tmp_dir,
-        enable_rag=False,
-        max_input_tokens=100
+        enable_rag=True,
+        max_input_tokens=10000
     )
-    ay_system = AiSystem(config)
+    ay_system = AISystem(config)
 
     asyncio.run(ay_system.start())
