@@ -17,6 +17,7 @@ class SystemConfig:
     repo_urls: List[str]
     temp_download_dir: str
     enable_rag: bool
+    max_input_tokens: int = 100
 
 class AiSystem:
     def __init__(self, config: SystemConfig):
@@ -25,10 +26,10 @@ class AiSystem:
 
         if config.enable_rag and (not config.temp_download_dir or not config.repo_urls):
             raise ValueError("If RAG is enabled, temp_download_dir and repo_urlsmust be provided")
-
-        self.enable_rag = config.enable_rag
-        self.repo_urls = config.repo_urls
-        self.temp_download_dir = config.temp_download_dir
+        self.config = config
+        self.enable_rag = self.config.enable_rag
+        self.repo_urls = self.config.repo_urls
+        self.temp_download_dir = self.config.temp_download_dir
 
         self.rag_system = None
         self.chat_agent = None
@@ -69,7 +70,7 @@ class AiSystem:
         Avvia chatbot
         """
         try:
-            agent = ChatAgent(self.rag_system)
+            agent = ChatAgent(rag_system=self.rag_system, max_input_tokens=self.config.max_input_tokens)
             agent.start_chatbot()
         except Exception as e:
             raise Exception("Error during Chat Agent startup", {e})

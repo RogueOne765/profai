@@ -62,4 +62,7 @@ class StandardMessages:
         print("Si è verificato un errore durante l'elaborazione della richiesta. Riprovare.")
 
     def file_format_not_permitted(self, expected_formats: List[str]):
-        print(f"Formato file caricato non consentito. Permessi file con estensione: {", ".join(expected_formats)})")
+        print(f"Formato file caricato non consentito. Permessi file con estensione: {", ".join(expected_formats)}")
+
+    def max_input_tokens(self):
+        print("Il file caricato supera il limite di grandezza consentito")

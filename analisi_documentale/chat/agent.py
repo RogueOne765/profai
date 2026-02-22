@@ -5,19 +5,21 @@ from rag.rag_system import RAGSystem
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 from llama_index.readers.file import PDFReader
-from utils import is_colab
+from utils import is_colab, count_tokens
 
 
 class ChatAgent():
     """
     Classe per interfaccia sistema RAG->LLM
     """
-    def __init__(self, rag_system: RAGSystem):
+    def __init__(self, rag_system: RAGSystem = None, max_input_tokens: int = 10000):
         """
         Inizializza client LLM e chain con LangChain
         """
         if rag_system and not isinstance(rag_system, RAGSystem):
             raise ValueError("rag_system must be a RAGSystem object")
+
+        self.max_input_tokens = max_input_tokens
 
         self.rag_system = rag_system
 
@@ -114,7 +116,6 @@ class ChatAgent():
         except Exception as e:
             raise Exception(f"Error extracting text: {e}")
 
-
     def generate_report(self, file):
         """ Metodo per generazione report strutturato a partire da file """
         if not file:
@@ -123,11 +124,16 @@ class ChatAgent():
         try:
             if not file.lower().endswith('.pdf'):
                 self.messages.file_format_not_permitted(["PDF"])
+                return
 
             content = self.extract_text_from_pdf(file)
 
             if not content:
                 self.messages.no_content_extracted()
+                return
+
+            if count_tokens(content) > self.max_input_tokens:
+                self.messages.max_input_tokens()
                 return
 
             chain = self.prompts.report() | self.llm | StrOutputParser()

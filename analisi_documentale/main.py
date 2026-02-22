@@ -15,7 +15,8 @@ if __name__ == '__main__':
     config = SystemConfig(
         repo_urls=urls,
         temp_download_dir=tmp_dir,
-        enable_rag=False
+        enable_rag=False,
+        max_input_tokens=100
     )
     ay_system = AiSystem(config)
 
