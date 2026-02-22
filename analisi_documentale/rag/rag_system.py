@@ -12,7 +12,7 @@ from llama_index.core.retrievers import (
 )
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
-from app_logger import LoggerHandler
+from app_logger import logger_instance
 from rag.chroma_client import ChromaClient
 from rag.custom_retriever import CustomRetriever
 
@@ -28,7 +28,7 @@ class RAGSystem():
         self.document_path_list = documents
         self.documents = []
 
-        self.app_logger = LoggerHandler().get_app_logger(__name__)
+        self.app_logger = logger_instance.get_app_logger(__name__)
         self.app_logger.debug(f"Inizializzazione RAGSystem su {len(documents)} documenti")
 
         try:

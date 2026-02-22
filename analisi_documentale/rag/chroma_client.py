@@ -1,6 +1,6 @@
 import chromadb
 
-from app_logger import LoggerHandler
+from app_logger import logger_instance
 
 
 class ChromaClient():
@@ -10,7 +10,7 @@ class ChromaClient():
         self.persist_directory = persist_directory
         self.collection_name = collection_name
 
-        self.logger = LoggerHandler().get_app_logger(__name__)
+        self.logger = logger_instance.get_app_logger(__name__)
 
         try:
             self.logger.debug("Inizializzazione client chromadb...")

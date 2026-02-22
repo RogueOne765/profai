@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import List
 
 from chat.agent import ChatAgent
-from app_logger import LoggerHandler
+from app_logger import logger_instance
 from rag.document_repo_client import DocumentRepositoryClient
 from rag.rag_system import RAGSystem
 from utils import clean_directory
@@ -28,7 +28,7 @@ class AISystem:
         if config.enable_rag and (not config.temp_download_dir or not config.repo_urls):
             raise ValueError("If RAG is enabled, temp_download_dir and repo_urlsmust be provided")
 
-        self.app_logger = LoggerHandler().get_app_logger(__name__)
+        self.app_logger = logger_instance.get_app_logger(__name__)
         self.app_logger.info("System startup...")
         self.app_logger.debug(f"Starting system with configs: {config}")
 

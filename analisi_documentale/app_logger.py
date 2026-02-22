@@ -7,22 +7,12 @@ class LoggerHandler:
     Gestione logging handler con singleton per utilizzo tra le varie classi dell'applicazione
     """
 
-    _instance = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance._initialized = False
-        return cls._instance
-
     def __init__(self):
-        if self._initialized:
-            return
         """
         Livelli di profondità dei log sono definiti tramite variabile ambiente
         per distinguere staging/produzione
         """
-        self.env = os.getenv("APP_ENV", "production")  # "staging" | "production"
+        self.env = os.getenv("APP_ENV")  # "staging" | "production"
         self.log_levels = {
             "staging": logging.DEBUG,
             "production": logging.WARNING,
@@ -34,7 +24,7 @@ class LoggerHandler:
         Definisce e Crea directory destinazione file di log
         """
 
-        self.base_dir = os.path.dirname(os.path.abspath(__file__))
+        self.base_dir = os.getcwd()
         self.app_log_dir = os.path.join(self.base_dir, "logs", "app")
         os.makedirs(self.app_log_dir, exist_ok=True)
         self.llm_log_dir = os.path.join(self.base_dir, "logs", "llm")
@@ -105,3 +95,6 @@ class LoggerHandler:
             logger.addHandler(console_handler)
 
         return logger
+
+
+logger_instance = LoggerHandler()

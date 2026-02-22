@@ -2,7 +2,7 @@ import os
 import tempfile
 import asyncio
 import aiohttp
-from app_logger import LoggerHandler
+from app_logger import logger_instance
 from utils import clean_directory
 
 
@@ -18,7 +18,7 @@ class DocumentRepositoryClient():
         self.downloaded_files = []
         os.makedirs(self.download_dir, exist_ok=True)
 
-        self.app_logger = LoggerHandler().get_app_logger(__name__)
+        self.app_logger = logger_instance.get_app_logger(__name__)
 
     async def load_repository(self, ):
         self.app_logger.debug(f"Loading repository from {self.urls}")
