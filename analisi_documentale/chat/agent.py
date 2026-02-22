@@ -1,4 +1,4 @@
-from chat.standard_messages import StandardMessages
+from chat.message_printer import MessagePrinter
 from chat.prompt import ChainPrompt
 from rag import rag_system
 from rag.rag_system import RAGSystem
@@ -30,7 +30,7 @@ class ChatAgent():
 
         self.prompts = ChainPrompt()
 
-        self.messages = StandardMessages()
+        self.printer = MessagePrinter()
 
     def _catch_user_input(self):
         """ Aspetta input utente """
@@ -38,7 +38,7 @@ class ChatAgent():
             question = input("Tu: ").strip()
 
             if question.lower() in ['exit']:
-                self.messages.goodbye()
+                self.printer.goodbye()
                 break
 
             if question.lower() in ["upload"]:
@@ -46,23 +46,23 @@ class ChatAgent():
                 break
 
             if not question:
-                self.messages.wrong_bitch()
+                self.printer.wrong_bitch()
                 continue
 
             answer = self.ask_agent(question)
 
             if answer:
-                self.messages.bot_answer(answer)
+                self.printer.bot_answer(answer)
             else:
-                self.messages.generic_error()
+                self.printer.generic_error()
 
     def start_chatbot(self):
         """Avvia chat con l'utente"""
 
         if self.rag_system:
-            self.messages.welcome_rag_enabled()
+            self.printer.welcome_rag_enabled()
         else:
-            self.messages.welcome_rag_disabled()
+            self.printer.welcome_rag_disabled()
 
         self._catch_user_input()
 
@@ -96,7 +96,7 @@ class ChatAgent():
                 context_results = self.rag_system.retrieve(query)
 
                 if len(context_results) == 0:
-                    self.messages.no_results()
+                    self.printer.no_results()
 
                 context = "\n---\n".join([res.text for res in context_results])
 
@@ -123,24 +123,24 @@ class ChatAgent():
 
         try:
             if not file.lower().endswith('.pdf'):
-                self.messages.file_format_not_permitted(["PDF"])
+                self.printer.file_format_not_permitted(["PDF"])
                 return
 
             content = self.extract_text_from_pdf(file)
 
             if not content:
-                self.messages.no_content_extracted()
+                self.printer.no_content_extracted()
                 return
 
             if count_tokens(content) > self.max_input_tokens:
-                self.messages.max_input_tokens()
+                self.printer.max_input_tokens()
                 return
 
             chain = self.prompts.report() | self.llm | StrOutputParser()
             answer = chain.invoke({"content": content})
 
             if answer:
-                self.messages.bot_answer(answer)
+                self.printer.bot_answer(answer)
             else:
                 self._reset_after_error()
 
@@ -149,5 +149,5 @@ class ChatAgent():
             raise Exception(f"Error during report generation: {e}")
 
     def _reset_after_error(self):
-        self.messages.generic_error()
+        self.printer.generic_error()
         self._catch_user_input()

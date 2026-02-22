@@ -1,6 +1,6 @@
 from typing import List
 
-class StandardMessages:
+class MessagePrinter:
 
     def __init__(self):
         self.chat_commands = """
