@@ -81,7 +81,7 @@ class ChatAgent():
         """
         if not isinstance(query, str):
             raise ValueError("query must be a string")
-        if not query:
+        if len(query) == 0:
             raise ValueError("query must not be empty")
 
         try:
@@ -92,7 +92,7 @@ class ChatAgent():
 
             context = ""
 
-            if rag_system:
+            if isinstance(self.rag_system, RAGSystem):
                 context_results = self.rag_system.retrieve(query)
 
                 if len(context_results) == 0:
