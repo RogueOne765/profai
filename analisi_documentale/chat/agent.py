@@ -121,6 +121,9 @@ class ChatAgent():
             raise ValueError("file must be provided")
 
         try:
+            if not file.lower().endswith('.pdf'):
+                self.messages.file_format_not_permitted(["PDF"])
+
             content = self.extract_text_from_pdf(file)
 
             if not content:

@@ -1,3 +1,5 @@
+from typing import List
+
 class StandardMessages:
 
     def __init__(self):
@@ -58,3 +60,6 @@ class StandardMessages:
 
     def generic_error(self):
         print("Si è verificato un errore durante l'elaborazione della richiesta. Riprovare.")
+
+    def file_format_not_permitted(self, expected_formats: List[str]):
+        print(f"Formato file caricato non consentito. Permessi file con estensione: {", ".join(expected_formats)})")
