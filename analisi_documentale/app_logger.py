@@ -1,6 +1,7 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
+from enums import AppEnv
 
 class LoggerHandler:
     """
@@ -12,10 +13,13 @@ class LoggerHandler:
         Livelli di profondità dei log sono definiti tramite variabile ambiente
         per distinguere staging/produzione
         """
-        self.env = os.getenv("APP_ENV")  # "staging" | "production"
+        self.env = os.getenv("APP_ENV")
+        if not isinstance(self.env, AppEnv):
+            raise ValueError("APP_ENV value not found or not valid")
+
         self.log_levels = {
-            "staging": logging.DEBUG,
-            "production": logging.WARNING,
+            AppEnv.STAGING: logging.DEBUG,
+            AppEnv.PRODUCTION: logging.WARNING,
         }
 
         self.level = self.log_levels[self.env] if self.env else logging.DEBUG

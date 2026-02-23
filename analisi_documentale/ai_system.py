@@ -8,6 +8,7 @@ from typing import List
 
 from chat.agent import ChatAgent
 from app_logger import logger_instance
+from enums import AppEnv
 from rag.document_repo_client import DocumentRepositoryClient
 from rag.rag_system import RAGSystem
 from utils import clean_directory
@@ -28,23 +29,27 @@ class AISystem:
         if config.enable_rag and (not config.temp_download_dir or not config.repo_urls):
             raise ValueError("If RAG is enabled, temp_download_dir and repo_urlsmust be provided")
 
-        self.app_logger = logger_instance.get_app_logger(__name__)
-        self.app_logger.info("System startup...")
-        self.app_logger.debug(f"Starting system with configs: {config}")
+        try:
+            self.get_environments()
 
-        self.config = config
-        self.enable_rag = self.config.enable_rag
-        self.repo_urls = self.config.repo_urls
-        self.temp_download_dir = self.config.temp_download_dir
+            self.app_logger = logger_instance.get_app_logger(__name__)
+            self.app_logger.info("System startup...")
+            self.app_logger.debug(f"Starting system with configs: {config}")
 
-        self.rag_system = None
-        self.chat_agent = None
+            self.config = config
+            self.enable_rag = self.config.enable_rag
+            self.repo_urls = self.config.repo_urls
+            self.temp_download_dir = self.config.temp_download_dir
+
+            self.rag_system = None
+            self.chat_agent = None
+        except Exception as e:
+            raise Exception(f"Error during {__name__} instance costruction", {e})
 
     async def start(self):
 
         self.app_logger.debug("Starting execution of the startup method...")
         try:
-            self.get_environments()
             if self.enable_rag:
                 await self.init_rag()
             self.init_agent()
@@ -56,14 +61,16 @@ class AISystem:
 
     def get_environments(self):
         """
-        Setta env per api groq
+        Verifica env prima dell'avvio dell'applicazione
         """
-        self.app_logger.debug("Validating environments...")
-
         load_dotenv()
 
         if "GROQ_API_KEY" not in os.environ:
             raise KeyError("Environment variable GROQ_API_KEY not set")
+
+        app_env = os.getenv("APP_ENV")
+        if not isinstance(app_env, AppEnv):
+            raise ValueError("APP_ENV value not found or not valid")
 
     async def init_rag(self):
         self.app_logger.debug("Starting document repository connection and rag system startup...")
