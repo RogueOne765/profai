@@ -101,4 +101,31 @@ class LoggerHandler:
         return logger
 
 
+    def get_monitoring_logger(self, name="llm_global"):
+        """
+        logger specifico per operazioni di monitoraggio applicazione
+        """
+        logger = logging.getLogger(name)
+
+        if logger.handlers:
+            return logger
+
+        logger.setLevel(self.level)
+
+        rotating_handler = RotatingFileHandler(
+            os.path.join(self.llm_log_dir, "monitoring.log"),
+            maxBytes=1000000,
+            backupCount=5
+        )
+
+        log_format = logging.Formatter(
+            '%(asctime)s - %(levelname)s - %(message)s \n'
+        )
+
+        rotating_handler.setFormatter(log_format)
+        logger.addHandler(rotating_handler)
+
+        return logger
+
+
 logger_instance = LoggerHandler()
