@@ -181,13 +181,15 @@ class ChatAgent():
         self.llm_logger.info(f"New request to generate report. File: {file}")
 
         try:
+            start_time = time.perf_counter()
+
             if not file.lower().endswith('.pdf'):
                 self.printer.file_format_not_permitted(["PDF"])
                 self.llm_logger.warning(f"File extension not permitted. File: {file}")
                 return
-
+            start_upload_time = time.perf_counter()
             content = self.extract_text_from_pdf(file)
-
+            end_upload_time = time.perf_counter()
             self.llm_logger.debug(f"Content extracted from {file}: {content}")
 
             if not content:
@@ -202,9 +204,22 @@ class ChatAgent():
 
             prompt = self.prompts.report()
             chain = prompt | self.llm | StrOutputParser()
+            start_llm_time = time.perf_counter()
             answer = chain.invoke({"content": content})
-
+            end_llm_time = time.perf_counter()
             self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Content: {content} \n\n Prompt: {prompt}")
+
+            end_time = time.perf_counter()
+            self.save_metrics(
+                query="report for file: " + file,
+                action_type=AgentActionType.REPORT,
+                start_time=start_time,
+                start_upload_time=start_upload_time,
+                start_llm_time=start_llm_time,
+                end_time=end_time,
+                end_llm_time=end_llm_time,
+                end_upload_time=end_upload_time
+            )
 
             if answer:
                 self.printer.bot_answer(answer)
@@ -241,12 +256,12 @@ class ChatAgent():
             req_metrics = AgentPerformanceMetrics(
                 action_type=action_type.value,
                 query=query,
-                total_time=end_time - start_time,
-                llm_time=end_llm_time - start_llm_time,
+                total_time=round(end_time - start_time,2),
+                llm_time=round(end_llm_time - start_llm_time,2),
             )
 
             if start_upload_time and end_upload_time:
-                req_metrics.upload_time = end_upload_time - start_upload_time
+                req_metrics.upload_time = round(end_upload_time - start_upload_time,2)
 
             rag_metrics = None
 
@@ -262,10 +277,10 @@ class ChatAgent():
 
                 rag_metrics = RAGPerformanceMetrics(
                     query=query,
-                    total_time=end_rag_time - start_rag_time,
-                    best_score=best_score or 0,
-                    worst_score=worst_score or 0,
-                    mean_score=mean_score or 0,
+                    total_time=round(end_rag_time - start_rag_time,2),
+                    best_score=round(best_score,2) or 0,
+                    worst_score=round(worst_score,2) or 0,
+                    mean_score=round(mean_score,2) or 0,
                     chunks_ids=chunks_ids
                 )
 
