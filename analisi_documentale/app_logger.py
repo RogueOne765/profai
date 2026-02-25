@@ -2,6 +2,7 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 from enums import AppEnv
+from dotenv import load_dotenv
 
 class LoggerHandler:
     """
@@ -13,16 +14,23 @@ class LoggerHandler:
         Livelli di profondità dei log sono definiti tramite variabile ambiente
         per distinguere staging/produzione
         """
-        self.env = os.getenv("APP_ENV")
-        if not isinstance(self.env, AppEnv):
-            raise ValueError("APP_ENV value not found or not valid")
+        load_dotenv()
+        env = os.getenv("APP_ENV")
+
+        if not env:
+            raise ValueError("APP_ENV non impostata")
+
+        try:
+            self.app_env = AppEnv(env)
+        except ValueError:
+            raise ValueError("APP_ENV value not valid")
 
         self.log_levels = {
             AppEnv.STAGING: logging.DEBUG,
             AppEnv.PRODUCTION: logging.WARNING,
         }
 
-        self.level = self.log_levels[self.env] if self.env else logging.DEBUG
+        self.level = self.log_levels[self.app_env] if self.app_env else logging.DEBUG
 
         """
         Definisce e Crea directory destinazione file di log
@@ -61,7 +69,7 @@ class LoggerHandler:
         rotating_handler.setFormatter(log_format)
         logger.addHandler(rotating_handler)
 
-        if self.env != "production":
+        if self.app_env != AppEnv.PRODUCTION:
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(log_format)
             logger.addHandler(console_handler)
@@ -93,7 +101,7 @@ class LoggerHandler:
         rotating_handler.setFormatter(log_format)
         logger.addHandler(rotating_handler)
 
-        if self.env != "production":
+        if self.app_env != AppEnv.PRODUCTION:
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(log_format)
             logger.addHandler(console_handler)

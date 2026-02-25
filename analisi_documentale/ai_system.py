@@ -8,7 +8,6 @@ from typing import List
 
 from chat.agent import ChatAgent
 from app_logger import logger_instance
-from enums import AppEnv
 from rag.document_repo_client import DocumentRepositoryClient
 from rag.rag_system import RAGSystem
 from utils import clean_directory
@@ -19,6 +18,7 @@ class SystemConfig:
     repo_urls: List[str]
     temp_download_dir: str
     enable_rag: bool
+    load_from_persist: bool = False
     max_input_tokens: int = 100
 
 class AISystem:
@@ -68,16 +68,12 @@ class AISystem:
         if "GROQ_API_KEY" not in os.environ:
             raise KeyError("Environment variable GROQ_API_KEY not set")
 
-        app_env = os.getenv("APP_ENV")
-        if not isinstance(app_env, AppEnv):
-            raise ValueError("APP_ENV value not found or not valid")
-
     async def init_rag(self):
         self.app_logger.debug("Starting document repository connection and rag system startup...")
         try:
             repo = DocumentRepositoryClient(self.repo_urls, temp_dir=self.temp_download_dir)
             documents = await repo.load_repository()
-            self.rag_system = RAGSystem(documents)
+            self.rag_system = RAGSystem(documents, load_from_persist=self.config.load_from_persist)
             repo.cleanup_temp_files()
         except Exception as e:
             clean_directory()

@@ -4,3 +4,5 @@
 chroma_db
 temp_downloads
 logs
+metrics.db
+indexes

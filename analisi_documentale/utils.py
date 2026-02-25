@@ -2,7 +2,10 @@ import shutil
 from transformers import AutoTokenizer
 
 def clean_directory(directory="temp_downloads"):
-    shutil.rmtree(directory)
+    try:
+        shutil.rmtree(directory)
+    except Exception as e:
+        raise Exception(f"Error during removing depository {directory}, {e}")
 
 def is_colab():
     try:

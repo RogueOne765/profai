@@ -1,7 +1,10 @@
+import time
 from app_logger import LoggerHandler
 from chat.message_printer import MessagePrinter
 from chat.prompt import ChainPrompt
-from rag import rag_system
+from enums import AgentActionType, AppEnv
+from monitoring.models import AgentPerformanceMetrics, RAGPerformanceMetrics
+from monitoring.collector import MetricsCollector
 from rag.rag_system import RAGSystem
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
@@ -22,6 +25,7 @@ class ChatAgent():
 
         self.app_logger = LoggerHandler().get_app_logger(__name__)
         self.llm_logger = LoggerHandler().get_llm_logger(__name__)
+        self.mon_logger = LoggerHandler().get_monitoring_logger(__name__)
 
         self.app_logger.info("Start chat agent instance...")
 
@@ -64,7 +68,7 @@ class ChatAgent():
 
         except Exception as e:
             self.llm_logger.error(f"Error while evaluating user request: {e}")
-            self._reset_after_error()
+            self._reset_and_print_error()
 
 
     def start_chatbot(self):
@@ -94,7 +98,7 @@ class ChatAgent():
 
         except Exception as e:
             self.llm_logger.error(f"Error while evaluating user request: {e}")
-            self._reset_after_error()
+            self._reset_and_print_error()
 
 
     def ask_agent(self, query):
@@ -109,6 +113,8 @@ class ChatAgent():
         self.llm_logger.info(f"New query request from user. Query: {query}")
 
         try:
+            start_time = time.perf_counter()
+
             tot_tokens = count_tokens(query)
             if tot_tokens > self.max_input_tokens:
                 self.llm_logger.warning(f"Limit exceed for query length. Total tokens: {tot_tokens}")
@@ -118,26 +124,43 @@ class ChatAgent():
             context = ""
 
             if isinstance(self.rag_system, RAGSystem):
-                context_results = self.rag_system.retrieve(query)
+                start_rag_time = time.perf_counter()
+                retrieve_results = self.rag_system.retrieve(query)
+                end_rag_time = time.perf_counter()
 
-                if len(context_results) == 0:
+                if len(retrieve_results) == 0:
                     self.llm_logger.warning(f"No context retrieved for current query: {query}")
                     self.printer.no_results()
+                    return
 
-                context = "\n---\n".join([res.text for res in context_results])
+                context = "\n---\n".join([res.text for res in retrieve_results])
 
-                self.llm_logger.debug(f"Context retrieved properties: number of docs {len(context_results)}, context tokens length {count_tokens(context)}")
+                self.llm_logger.debug(f"Context retrieved properties: number of docs {len(retrieve_results)}, context tokens length {count_tokens(context)}")
 
             prompt = self.prompts.simple_query()
             chain = prompt | self.llm | StrOutputParser()
+            start_llm_time = time.perf_counter()
             answer = chain.invoke({"context": context, "question": query})
+            end_llm_time = time.perf_counter()
 
-            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Query: {query} \n\n Context: {context} \n\n Prompt: {prompt}")
+            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Query: {query} \n\n Prompt: {prompt}")
+            end_time = time.perf_counter()
+            self.save_metrics(
+                query=query,
+                action_type=AgentActionType.DIRECT_QUERY,
+                retrieve_results=retrieve_results or [],
+                start_time=start_time,
+                start_rag_time=start_rag_time or 0.0,
+                start_llm_time=start_llm_time,
+                end_time=end_time,
+                end_llm_time=end_llm_time,
+                end_rag_time=end_rag_time or 0.0
+            )
 
             if answer:
                 self.printer.bot_answer(answer)
             else:
-                self._reset_after_error(f"No answer returned for query: {query}")
+                self._reset_and_print_error(f"No answer returned for query: {query}")
 
         except Exception as e:
             raise Exception(f"Error asking agent: {e}")
@@ -186,13 +209,68 @@ class ChatAgent():
             if answer:
                 self.printer.bot_answer(answer)
             else:
-                self._reset_after_error(f"No report generated for file: {file}")
+                self._reset_and_print_error(f"No report generated for file: {file}")
 
         except Exception as e:
             raise Exception(f"Error during report generation: {e}")
 
-    def _reset_after_error(self, error = ""):
+    def _reset_and_print_error(self, error =""):
         generic_error_msg = "Invalid response from LLM client"
         self.llm_logger.error(error if error else generic_error_msg)
         self.printer.generic_error()
         self._catch_user_input()
+
+    def save_metrics(
+            self,
+            action_type=None,
+            query="",
+            start_time=0.0,
+            start_llm_time=0.0,
+            start_rag_time=0.0,
+            start_upload_time=None,
+            end_time=0.0,
+            end_llm_time=0.0,
+            end_rag_time=0.0,
+            end_upload_time=None,
+            retrieve_results=[]
+    ):
+        try:
+            if not isinstance(action_type, AgentActionType):
+                raise ValueError("Action type must be AgentActionType instance")
+
+            req_metrics = AgentPerformanceMetrics(
+                action_type=action_type.value,
+                query=query,
+                total_time=end_time - start_time,
+                llm_time=end_llm_time - start_llm_time,
+            )
+
+            if start_upload_time and end_upload_time:
+                req_metrics.upload_time = end_upload_time - start_upload_time
+
+            rag_metrics = None
+
+            if len(retrieve_results) > 0:
+
+                scores = [float(res.score) for res in retrieve_results if res.score]
+                if scores:
+                    best_score = max(scores)
+                    worst_score = min(scores)
+                    mean_score = sum(scores) / len(scores)
+
+                chunks_ids = ",".join([res.id_ for res in retrieve_results])
+
+                rag_metrics = RAGPerformanceMetrics(
+                    query=query,
+                    total_time=end_rag_time - start_rag_time,
+                    best_score=best_score or 0,
+                    worst_score=worst_score or 0,
+                    mean_score=mean_score or 0,
+                    chunks_ids=chunks_ids
+                )
+
+            collector = MetricsCollector(agent_metrics=req_metrics, rag_metrics=rag_metrics)
+            collector.save()
+
+        except Exception as e:
+            self.mon_logger.error(f"Error during saving metrics: {e}")
