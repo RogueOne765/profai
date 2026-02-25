@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+
 import time
 from app_logger import LoggerHandler
 from chat.message_printer import MessagePrinter
@@ -10,7 +13,6 @@ from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 from llama_index.readers.file import PDFReader
 from utils import is_colab, count_tokens
-
 
 class ChatAgent():
     """
@@ -33,9 +35,16 @@ class ChatAgent():
 
         self.rag_system = rag_system
 
+        load_dotenv()
+        self.app_env = os.getenv("APP_ENV")
+
         self.llm = ChatGroq(
-            model="llama-3.3-70b-versatile",
+            #model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-120b",
             temperature=0.1,
+            verbose=self.app_env == AppEnv.STAGING.value,
+            max_tokens=max_input_tokens + int(max_input_tokens/10),
+            streaming=True
         )
 
         self.app_logger.debug(f"Set llm object as {self.llm}")
@@ -140,10 +149,15 @@ class ChatAgent():
             prompt = self.prompts.simple_query()
             chain = prompt | self.llm | StrOutputParser()
             start_llm_time = time.perf_counter()
-            answer = chain.invoke({"context": context, "question": query})
+            answer = ""
+
+            for chunk in chain.stream({"context": context, "question": query}):
+                if chunk:
+                    answer += chunk
+
             end_llm_time = time.perf_counter()
 
-            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Query: {query} \n\n Prompt: {prompt}")
+            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Query: {query} \n\n Context: {context}")
             end_time = time.perf_counter()
             self.save_metrics(
                 query=query,
@@ -207,7 +221,7 @@ class ChatAgent():
             start_llm_time = time.perf_counter()
             answer = chain.invoke({"content": content})
             end_llm_time = time.perf_counter()
-            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Content: {content} \n\n Prompt: {prompt}")
+            self.llm_logger.info(f"New response from LLM. Answer: {answer} \n\n Content: {content}")
 
             end_time = time.perf_counter()
             self.save_metrics(

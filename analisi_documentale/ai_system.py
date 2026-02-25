@@ -10,16 +10,16 @@ from chat.agent import ChatAgent
 from app_logger import logger_instance
 from rag.document_repo_client import DocumentRepositoryClient
 from rag.rag_system import RAGSystem
-from utils import clean_directory
+from utils import clean_directory, is_url
 
 
 @dataclass
 class SystemConfig:
-    repo_urls: List[str]
-    temp_download_dir: str
-    enable_rag: bool
-    load_from_persist: bool = False
-    max_input_tokens: int = 100
+    repo_urls: List[str] # file pdf da scaricare per alimentare RAG
+    temp_download_dir: str # directory in cui vengono salvati temporaneamente i file indicati in repo_urls
+    enable_rag: bool # attiva/disabilita RAG
+    load_from_persist: bool = False # carica storage perstistito per rag di runtime precedente
+    max_input_tokens: int = 100 # limite token per richieste utente verso agente chat
 
 class AISystem:
     def __init__(self, config: SystemConfig):
@@ -71,10 +71,18 @@ class AISystem:
     async def init_rag(self):
         self.app_logger.debug("Starting document repository connection and rag system startup...")
         try:
-            repo = DocumentRepositoryClient(self.repo_urls, temp_dir=self.temp_download_dir)
-            documents = await repo.load_repository()
-            self.rag_system = RAGSystem(documents, load_from_persist=self.config.load_from_persist)
-            repo.cleanup_temp_files()
+            if self.config.load_from_persist:
+                self.rag_system = RAGSystem(load_from_persist=self.config.load_from_persist)
+            else:
+                remote_urls = [url for url in self.repo_urls if is_url(url)]
+                local_paths = [path for path in self.repo_urls if path not in remote_urls]
+                remote_documents = []
+                if len(remote_urls):
+                    repo = DocumentRepositoryClient(remote_urls, temp_dir=self.temp_download_dir)
+                    remote_documents = await repo.load_repository()
+
+                self.rag_system = RAGSystem(remote_documents + local_paths, load_from_persist=self.config.load_from_persist)
+
         except Exception as e:
             clean_directory()
             raise Exception("Error during first RAG system startup", {e})

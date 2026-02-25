@@ -41,8 +41,8 @@ class LoggerHandler:
         os.makedirs(self.app_log_dir, exist_ok=True)
         self.llm_log_dir = os.path.join(self.base_dir, "logs", "llm")
         os.makedirs(self.llm_log_dir, exist_ok=True)
-
-        self._initialized = True
+        self.monitoring_log_dir = os.path.join(self.base_dir, "logs", "monitoring")
+        os.makedirs(self.monitoring_log_dir, exist_ok=True)
 
 
     def get_app_logger(self, name="app_global"):
@@ -109,7 +109,7 @@ class LoggerHandler:
         return logger
 
 
-    def get_monitoring_logger(self, name="llm_global"):
+    def get_monitoring_logger(self, name="monitoring_global"):
         """
         logger specifico per operazioni di monitoraggio applicazione
         """
@@ -121,7 +121,7 @@ class LoggerHandler:
         logger.setLevel(self.level)
 
         rotating_handler = RotatingFileHandler(
-            os.path.join(self.llm_log_dir, "monitoring.log"),
+            os.path.join(self.monitoring_log_dir, "monitoring.log"),
             maxBytes=1000000,
             backupCount=5
         )

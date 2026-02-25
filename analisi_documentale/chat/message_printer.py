@@ -15,13 +15,8 @@ class MessagePrinter:
         
         ====================
 
-        Il sistema può rispondere su vari domini:
-            - guida generale allo studente (es. come cambiare sede o corso, inizio lezioni etc.)
-            - come avviare procedure tirocinio (marketing)
-            - elenco enti disponibili per tirocinio (marketing)
-            - linee guida elaborazione e stesura tesi (giurisprudenza)
-
-        es: Come avviare procedura per inizio tirocinio?
+        Il sistema può generare insight sui report finanziari di DataTrust Solutions.
+        es: Quali sono i punti principali riguardo area di performance finanziaria degli ultimi anni?
 
         ====================
         

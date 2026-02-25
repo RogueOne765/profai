@@ -1,11 +1,15 @@
 import shutil
+from pathlib import Path
 from transformers import AutoTokenizer
+from urllib.parse import urlparse
 
-def clean_directory(directory="temp_downloads"):
+def clean_directory(directory = "temp_downloads"):
     try:
-        shutil.rmtree(directory)
+        dir_path = Path(directory)
+        if dir_path.exists() and dir_path.is_dir():
+            shutil.rmtree(directory)
     except Exception as e:
-        raise Exception(f"Error during removing depository {directory}, {e}")
+        raise Exception(f"Errore durante la rimozione di '{directory}': {e}")
 
 def is_colab():
     try:
@@ -21,3 +25,7 @@ def count_tokens(text: str):
         return len(tokens['input_ids'])
     except Exception as e:
         return len(text.split())
+
+def is_url(s):
+    parsed = urlparse(s)
+    return bool(parsed.scheme and parsed.netloc)

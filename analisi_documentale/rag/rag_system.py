@@ -18,6 +18,8 @@ from llama_index.llms.groq import Groq
 from app_logger import logger_instance
 from rag.chroma_client import ChromaClient
 from rag.custom_retriever import CustomRetriever
+from utils import clean_directory
+
 
 class RAGSystem():
     """
@@ -27,7 +29,7 @@ class RAGSystem():
     def __init__(self, documents=None, load_from_persist=False):
         """Inizializza sistema RAG"""
         self.load_from_persist = load_from_persist
-        self.document_path_list = documents if documents else []
+        self.documents_paths = documents
         self.documents = []
 
         self.app_logger = logger_instance.get_app_logger(__name__)
@@ -65,7 +67,7 @@ class RAGSystem():
         self.app_logger.debug("Lettura dei documenti e creazione embeddings in corso...")
         os.makedirs(self.persist_index_dir, exist_ok=True)
 
-        self.documents = SimpleDirectoryReader(input_files=self.document_path_list).load_data()
+        self.documents = SimpleDirectoryReader(input_files=self.documents_paths).load_data()
 
         self.chroma_client = ChromaClient()
         self.storage_context = None
@@ -81,6 +83,9 @@ class RAGSystem():
         self.keyword_retriever = None
         self.custom_retriever = None
         self._create_retrieval()
+
+        # rimuove eventuali file temporanei scaricati da risorse esterne
+        clean_directory()
 
     def _load_from_persist(self):
         """Carica RAG da storage persistito"""
