@@ -92,8 +92,8 @@ class AISystem:
         Avvia chatbot
         """
         try:
-            agent = ChatAgent(rag_system=self.rag_system, max_input_tokens=self.config.max_input_tokens)
-            agent.start_chatbot()
+            self.chat_agent = ChatAgent(rag_system=self.rag_system, max_input_tokens=self.config.max_input_tokens)
+            self.chat_agent.start_chatbot()
         except Exception as e:
             raise Exception("Error during Chat Agent startup", {e})
 

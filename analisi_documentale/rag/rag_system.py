@@ -16,6 +16,7 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.groq import Groq
 
 from app_logger import logger_instance
+from enums import GroqModelId
 from rag.chroma_client import ChromaClient
 from rag.custom_retriever import CustomRetriever
 from utils import clean_directory
@@ -37,7 +38,7 @@ class RAGSystem():
 
         try:
             api_key = os.getenv("GROQ_API_KEY")
-            Settings.llm = Groq(model="llama3-70b-8192", api_key=api_key)
+            Settings.llm = Groq(model=GroqModelId.LLAMA70.value, api_key=api_key)
 
             embed_model = HuggingFaceEmbedding(
                 model_name="sentence-transformers/all-MiniLM-L6-v2"

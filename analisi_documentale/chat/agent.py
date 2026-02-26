@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 import time
 from app_logger import LoggerHandler
-from chat.message_printer import ChatMessagesTemplates
+from chat.messages_templates import ChatMessagesTemplates
 from chat.prompt import ChainPrompt
 from enums import AgentActionType, AppEnv, GroqModelId
 from monitoring.models import AgentPerformanceMetrics, RAGPerformanceMetrics
