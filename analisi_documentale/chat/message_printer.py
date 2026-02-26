@@ -1,6 +1,6 @@
 from typing import List
 
-class MessagePrinter:
+class ChatMessagesTemplates:
 
     def __init__(self):
         self.chat_commands = """
@@ -10,7 +10,7 @@ class MessagePrinter:
         """
 
     def welcome_rag_enabled(self):
-        print(f"""
+        return f"""
         "ChatBot avviato!"
         
         ====================
@@ -22,10 +22,10 @@ class MessagePrinter:
         
         {self.chat_commands}
 
-        """)
+        """
 
     def welcome_rag_disabled(self):
-        print(f"""
+        return f"""
         "ChatBot avviato!"
         
         ====================
@@ -36,28 +36,28 @@ class MessagePrinter:
         ====================
     
         {self.chat_commands}
-        """)
+        """
 
     def goodbye(self):
-        print("Arrivederci!")
+        return "Arrivederci!"
 
     def wrong_bitch(self):
-        print("Bot: Per favore scrivi qualcosa!")
+        return "Bot: Per favore scrivi qualcosa!"
 
     def no_results(self):
-        print("Non ho trovato nulla su questo argomento")
+        return "Non ho trovato nulla su questo argomento"
 
     def bot_answer(self, answer):
-        print(f"Bot: {answer}")
+        return f"Bot:\n {answer}"
 
     def no_content_extracted(self):
-        print("Non ho trovato contenuti testuali all'interno del file fornito")
+        return "Non ho trovato contenuti testuali all'interno del file fornito"
 
     def generic_error(self):
-        print("Si è verificato un errore durante l'elaborazione della richiesta. Riprovare.")
+        return "Si è verificato un errore durante l'elaborazione della richiesta. Riprovare."
 
     def file_format_not_permitted(self, expected_formats: List[str]):
-        print(f"Formato file caricato non consentito. Permessi file con estensione: {", ".join(expected_formats)}")
+        return f"Formato file caricato non consentito. Permessi file con estensione: {", ".join(expected_formats)}"
 
     def max_input_tokens(self):
-        print("Il file caricato supera il limite di grandezza consentito")
+        return "Il file caricato supera il limite di grandezza consentito"

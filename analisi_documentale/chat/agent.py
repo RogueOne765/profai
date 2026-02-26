@@ -3,9 +3,9 @@ from dotenv import load_dotenv
 
 import time
 from app_logger import LoggerHandler
-from chat.message_printer import MessagePrinter
+from chat.message_printer import ChatMessagesTemplates
 from chat.prompt import ChainPrompt
-from enums import AgentActionType, AppEnv
+from enums import AgentActionType, AppEnv, GroqModelId
 from monitoring.models import AgentPerformanceMetrics, RAGPerformanceMetrics
 from monitoring.collector import MetricsCollector
 from rag.rag_system import RAGSystem
@@ -39,8 +39,8 @@ class ChatAgent():
         self.app_env = os.getenv("APP_ENV")
 
         self.llm = ChatGroq(
-            #model="llama-3.3-70b-versatile",
-            model="openai/gpt-oss-120b",
+            #model=GroqModelId.LLAMA70.value,
+            model=GroqModelId.OSS120.value,
             temperature=0.1,
             verbose=self.app_env == AppEnv.STAGING.value,
             max_tokens=max_input_tokens + int(max_input_tokens/10),
@@ -51,7 +51,7 @@ class ChatAgent():
 
         self.prompts = ChainPrompt()
 
-        self.printer = MessagePrinter()
+        self.msg_templates = ChatMessagesTemplates()
 
     def _catch_user_input(self):
         """ Aspetta input utente """
@@ -62,31 +62,33 @@ class ChatAgent():
                 question = input("Tu: ").strip()
 
                 if question.lower() in ['exit']:
-                    self.printer.goodbye()
+                    print(self.msg_templates.goodbye())
                     break
 
                 if question.lower() in ["upload"]:
-                    self._catch_user_file_upload()
+                    print(self._catch_user_file_upload())
                     break
 
                 if not question:
-                    self.printer.wrong_bitch()
+                    print(self.msg_templates.wrong_bitch())
                     continue
 
-                self.ask_agent(question)
+                answer = self.ask_agent(question)
+                print(self.msg_templates.bot_answer(answer))
 
         except Exception as e:
             self.llm_logger.error(f"Error while evaluating user request: {e}")
-            self._reset_and_print_error()
+            print(self.msg_templates.generic_error())
+            self._catch_user_input()
 
 
     def start_chatbot(self):
         """Avvia chat con l'utente"""
 
         if self.rag_system:
-            self.printer.welcome_rag_enabled()
+            print(self.msg_templates.welcome_rag_enabled())
         else:
-            self.printer.welcome_rag_disabled()
+            print(self.msg_templates.welcome_rag_disabled())
 
         self._catch_user_input()
 
@@ -103,11 +105,13 @@ class ChatAgent():
                 else:
                     filename = input("Inserisci il percorso del file PDF: ")
 
-                self.generate_report(filename)
+                answer = self.generate_report(filename)
+                print(self.msg_templates.bot_answer(answer))
 
         except Exception as e:
-            self.llm_logger.error(f"Error while evaluating user request: {e}")
-            self._reset_and_print_error()
+                self.llm_logger.error(f"Error while evaluating user request: {e}")
+                print(self.msg_templates.generic_error())
+                self._catch_user_input()
 
 
     def ask_agent(self, query):
@@ -127,8 +131,7 @@ class ChatAgent():
             tot_tokens = count_tokens(query)
             if tot_tokens > self.max_input_tokens:
                 self.llm_logger.warning(f"Limit exceed for query length. Total tokens: {tot_tokens}")
-                self.printer.max_input_tokens()
-                return
+                return self.msg_templates.max_input_tokens()
 
             context = ""
 
@@ -139,8 +142,7 @@ class ChatAgent():
 
                 if len(retrieve_results) == 0:
                     self.llm_logger.warning(f"No context retrieved for current query: {query}")
-                    self.printer.no_results()
-                    return
+                    return self.msg_templates.no_results()
 
                 context = "\n---\n".join([res.text for res in retrieve_results])
 
@@ -172,9 +174,10 @@ class ChatAgent():
             )
 
             if answer:
-                self.printer.bot_answer(answer)
+                return answer
             else:
-                self._reset_and_print_error(f"No answer returned for query: {query}")
+                self.llm_logger.error(f"No answer returned for query: {query}")
+                return self.msg_templates.generic_error()
 
         except Exception as e:
             raise Exception(f"Error asking agent: {e}")
@@ -198,23 +201,21 @@ class ChatAgent():
             start_time = time.perf_counter()
 
             if not file.lower().endswith('.pdf'):
-                self.printer.file_format_not_permitted(["PDF"])
                 self.llm_logger.warning(f"File extension not permitted. File: {file}")
-                return
+                return self.msg_templates.file_format_not_permitted(["PDF"])
+
             start_upload_time = time.perf_counter()
             content = self.extract_text_from_pdf(file)
             end_upload_time = time.perf_counter()
             self.llm_logger.debug(f"Content extracted from {file}: {content}")
 
             if not content:
-                self.printer.no_content_extracted()
                 self.llm_logger.warning(f"No content extracted from {file}")
-                return
+                return self.msg_templates.no_content_extracted()
 
             if count_tokens(content) > self.max_input_tokens:
                 self.llm_logger.warning(f"Max input tokens reached for submitted file: {file}")
-                self.printer.max_input_tokens()
-                return
+                return self.msg_templates.max_input_tokens()
 
             prompt = self.prompts.report()
             chain = prompt | self.llm | StrOutputParser()
@@ -236,18 +237,13 @@ class ChatAgent():
             )
 
             if answer:
-                self.printer.bot_answer(answer)
+                return answer
             else:
-                self._reset_and_print_error(f"No report generated for file: {file}")
+                self.llm_logger.error(f"No report generated for file: {file}")
+                return self.msg_templates.generic_error()
 
         except Exception as e:
             raise Exception(f"Error during report generation: {e}")
-
-    def _reset_and_print_error(self, error =""):
-        generic_error_msg = "Invalid response from LLM client"
-        self.llm_logger.error(error if error else generic_error_msg)
-        self.printer.generic_error()
-        self._catch_user_input()
 
     def save_metrics(
             self,
