@@ -26,11 +26,11 @@ class LoggerHandler:
             raise ValueError("APP_ENV value not valid")
 
         self.log_levels = {
-            AppEnv.STAGING: logging.DEBUG,
-            AppEnv.PRODUCTION: logging.WARNING,
+            AppEnv.STAGING.value: logging.DEBUG,
+            AppEnv.PRODUCTION.value: logging.WARNING,
         }
 
-        self.level = self.log_levels[self.app_env] if self.app_env else logging.DEBUG
+        self.level = self.log_levels[self.app_env.value] if self.app_env else logging.DEBUG
 
         """
         Definisce e Crea directory destinazione file di log
@@ -69,7 +69,7 @@ class LoggerHandler:
         rotating_handler.setFormatter(log_format)
         logger.addHandler(rotating_handler)
 
-        if self.app_env != AppEnv.PRODUCTION:
+        if self.app_env.value != AppEnv.PRODUCTION:
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(log_format)
             logger.addHandler(console_handler)
@@ -101,7 +101,7 @@ class LoggerHandler:
         rotating_handler.setFormatter(log_format)
         logger.addHandler(rotating_handler)
 
-        if self.app_env != AppEnv.PRODUCTION:
+        if self.app_env.value != AppEnv.PRODUCTION:
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(log_format)
             logger.addHandler(console_handler)
