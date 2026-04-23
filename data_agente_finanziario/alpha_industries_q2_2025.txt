@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q2 2025 - Alpha Industries S.p.A.
+
+## Sommario Esecutivo
+
+Il secondo trimestre 2025 mostra segnali contrastanti. La crescita dei ricavi continua (+8.5% rispetto al Q1), ma la redditività è sotto pressione a causa dell'aumento dei costi delle materie prime. Il consiglio di amministrazione ha approvato un piano di ristrutturazione operativa.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q2 2025 | Q1 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €49.0M | €45.2M | +8.4% |
+| Margine operativo lordo (EBITDA) | €9.3M | €9.8M | -5.1% |
+| Margine operativo (EBIT) | €5.8M | €6.4M | -9.4% |
+| Risultato netto | €3.2M | €3.9M | -17.9% |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: 11.8% (-2.4% rispetto al Q1 2025)
+- **ROI**: 7.9% (-0.8%)
+- **ROS**: 11.8% (-2.4%)
+- **Margine EBITDA**: 19.0% (-2.7%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €26.8M | Passivo corrente | €23.5M |
+| Attivo non corrente | €44.1M | Passivo non corrente | €17.2M |
+| **Totale attivo** | **€70.9M** | **Patrimonio netto** | €30.2M |
+| | | **Totale passivo** | **€70.9M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 1.14 (in peggioramento)
+- **Quick Ratio**: 0.72 (critico)
+- **Debt to Equity**: 1.35
+- **Indice di copertura degli interessi**: 3.8x
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Liquidità**: La situazione è peggiorata significativamente. Il quick ratio a 0.72 indica scarsa capacità di far fronte agli impegni a breve termine.
+
+2. **Rischio di Credito**: Crediti in sofferenza aumentati a €2.8M (+33%)
+
+3. **Rischio di Redditività**: Il margine EBITDA è sceso dal 21.7% al 19.0% in un solo trimestre
+
+4. **Rischio Operativo**: 
+   - Costi materie prime: +18% rispetto al Q1
+   - Costi energetici: +22%
+   - Costo del personale: +5%
+
+### 3.2 Azioni Correttive Proposte
+
+- Piano di riduzione costi operativi: €1.5M annui
+- Accelerazione incassi crediti: target DSO < 50 giorni
+- Rinegoziazione contratti fornitori
+- Possibile dismissione di asset non strategici
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ⚠️ Fatturazione elettronica - Irregolarità riscontrate in 12 casi
+- ⚠️ Privacy (GDPR) - Aggiornamento policy necessario
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - Conformità confermata
+
+### 4.2 Audit Interne
+
+Data la situazione finanziaria, si raccomanda un audit approfondito sulla gestione del capitale circolante e sui processi di fatturazione.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Quick Ratio | < 0.8 | 0.72 | 🔴 ALLARME |
+| DSO | > 60 gg | 65 gg | 🔴 ALLARME |
+| Margine EBITDA | < 15% | 19.0% | 🟡 ATTENZIONE |
+| Debt/EBITDA | > 4.0 | 3.2 | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+La società deve affrontare una fase critica. Senza interventi immediati, la situazione di liquidità potrebbe peggiorare ulteriormente nel Q3. Si raccomanda:
+
+1. Approvazione immediata del piano di ristrutturazione
+2. Potenziamento del monitoraggio crediti
+3. Revisione della politica di investimento
+4. Audit completo sulla gestione della tesoreria
+
+---
+
+**Data di redazione**: 15 Luglio 2025
+**Responsabile**: Dott. Marco Bianchi - CFO
+**Approvato**: Dott. Roberto Rossi - Amministratore Delegato
