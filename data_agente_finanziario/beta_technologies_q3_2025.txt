@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q3 2025 - Beta Technologies S.p.A.
+
+## Sommario Esecutivo
+
+Il terzo trimestre 2025 segna un punto di svolta per Beta Technologies. Il lancio di BetaBrain v2.0 ha superato le aspettative, generando un picco di nuove sottoscrizioni. I ricavi crescono del 18.2% rispetto al Q2 e, per la prima volta, l'EBIT risulta positivo. Il patrimonio netto supera i €55M.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q3 2025 | Q2 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €33.7M | €28.5M | +18.2% |
+| Margine operativo lordo (EBITDA) | €4.2M | €2.1M | +100.0% |
+| Margine operativo (EBIT) | €0.5M | -€1.8M | N/A |
+| Risultato netto | €0.2M | -€2.2M | N/A |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: 0.7% (+9.2% rispetto al Q2 2025)
+- **ROI**: 0.5% (+4.7%)
+- **ROS**: 0.7% (+9.2%)
+- **Margine EBITDA**: 12.5% (+5.1%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €48.1M | Passivo corrente | €20.3M |
+| Attivo non corrente | €40.2M | Passivo non corrente | €12.1M |
+| **Totale attivo** | **€88.3M** | **Patrimonio netto** | €55.9M |
+| | | **Totale passivo** | **€88.3M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 2.37 (ottimo)
+- **Quick Ratio**: 2.25 (eccellente)
+- **Debt to Equity**: 0.58
+- **Indice di copertura degli interessi**: N/A (liquidità netta)
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Scalabilità**: La crescita del 18% ha messo a dura prova l'infrastruttura cloud. Due episodi di slowdown nel mese di settembre.
+
+2. **Rischio di Dipendenza Clienti**: Il top 3 clienti è sceso al 38% dei ricavi ma rimane sopra il target del 35%.
+
+3. **Rischio Competitivo**: Il competitor diretto TechFlow ha ridotto i prezzi del 20% nel segmento mid-market.
+
+4. **Rischio Operativo**:
+   - Costi infrastruttura cloud: +35% rispetto al Q2
+   - Costi supporto clienti: +25% (aumento ticket)
+   - Churn rate mensile: 1.8% (in miglioramento)
+
+### 3.2 Azioni Correttive Proposte
+
+- Upgrade infrastruttura cloud: budget €1.5M per Q4
+- Apertura ufficio Londra: avviata, prima assunzione prevista novembre
+- Round Serie C: term sheet ricevuto da due fondi, valutazione in corso
+- Programma customer success: implementato, NRR in crescita al 112%
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ✅ Fatturazione elettronica - Conforme
+- 🔄 Privacy (GDPR) - Audit ISO 27001 programmato ottobre
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - N/A
+
+### 4.2 Audit Interne
+
+Audit infrastruttura completato. Raccomandato upgrade server e implementazione CDN globale.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Runway (mesi) | < 12 | 28+ | 🟢 OK |
+| Churn Rate | > 3% | 1.8% | 🟢 OK |
+| CAC/LTV | < 3.0 | 3.5 | 🟢 OK |
+| NRR (Net Revenue Retention) | < 100% | 112% | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+Il Q3 2025 rappresenta uno spartiacque: Beta Technologies ha raggiunto la redditività operativa 6 mesi prima del piano originario. La domanda per BetaBrain v2.0 è superiore alle capacità attuali. Si raccomanda:
+
+1. Investimento immediato in scalabilità infrastrutturale
+2. Accettazione term sheet Serie C per finanziare espansione europea
+3. Assunzione 20 nuovi ingegneri entro Q1 2026
+4. Lancio programma partnership con system integrator
+
+---
+
+**Data di redazione**: 20 Ottobre 2025
+**Responsabile**: Dott.ssa Elena Verdi - CFO
+**Approvato**: Ing. Alessandro Neri - Amministratore Delegato

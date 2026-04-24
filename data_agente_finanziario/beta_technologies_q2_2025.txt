@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q2 2025 - Beta Technologies S.p.A.
+
+## Sommario Esecutivo
+
+Il secondo trimestre 2025 conferma la forte crescita di Beta Technologies nel settore software enterprise. I ricavi crescono del 15.3% rispetto al Q1, trainati dalle nuove acquisizioni clienti nel segmento cloud. Tuttavia, gli elevati investimenti in R&D e vendite mantengono l'azienda in area di perdita operativa, coerentemente con il piano di sviluppo approvato dal CdA.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q2 2025 | Q1 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €28.5M | €24.7M | +15.4% |
+| Margine operativo lordo (EBITDA) | €2.1M | €1.4M | +50.0% |
+| Margine operativo (EBIT) | -€1.8M | -€2.5M | +28.0% |
+| Risultato netto | -€2.2M | -€3.0M | +26.7% |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: -8.5% (+2.1% rispetto al Q1 2025)
+- **ROI**: -4.2% (+1.5%)
+- **ROS**: -8.5% (+2.1%)
+- **Margine EBITDA**: 7.4% (+1.7%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €42.3M | Passivo corrente | €18.7M |
+| Attivo non corrente | €38.5M | Passivo non corrente | €12.4M |
+| **Totale attivo** | **€80.8M** | **Patrimonio netto** | €49.7M |
+| | | **Totale passivo** | **€80.8M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 2.26 (ottimo)
+- **Quick Ratio**: 2.14 (eccellente)
+- **Debt to Equity**: 0.63
+- **Indice di copertura degli interessi**: N/A (liquidità netta)
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Burn Rate**: Il cash burn mensile è di €0.8M. Con la liquidità attuale, runway di circa 24 mesi.
+
+2. **Rischio di Dipendenza Clienti**: Il top 3 clienti rappresenta il 42% dei ricavi. Perdita di un cliente chiave avrebbe impatto significativo.
+
+3. **Rischio Competitivo**: Nuovi competitor nel segmento AI-assisted automation con funding significativo ($50M+ raccolti nel trimestre)
+
+4. **Rischio Operativo**:
+   - Costi R&D: +22% rispetto al Q1 (assunzione 15 nuovi ingegneri)
+   - Costi vendite e marketing: +18%
+   - Churn rate mensile: 2.1% (in aumento)
+
+### 3.2 Azioni Correttive Proposte
+
+- Diversificazione portafoglio clienti: target top 3 < 35% entro fine anno
+- Lancio nuovo modulo AI (BetaBrain v2.0) previsto per Q3
+- Ottimizzazione CAC/LTV: riduzione costo acquisizione del 15%
+- Round di finanziamento Serie C: preparazione documentation room
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ✅ Fatturazione elettronica - Conforme
+- ✅ Privacy (GDPR) - Certificazione ISO 27001 in corso
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - N/A (settore B2B SaaS)
+
+### 4.2 Audit Interne
+
+Audit sicurezza informatica completato con esito positivo. Nessuna vulnerabilità critica rilevata.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Runway (mesi) | < 12 | 24 | 🟢 OK |
+| Churn Rate | > 3% | 2.1% | 🟡 ATTENZIONE |
+| CAC/LTV | < 3.0 | 3.2 | 🟢 OK |
+| NRR (Net Revenue Retention) | < 100% | 108% | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+Beta Technologies conferma la sua traiettoria di crescita ad alta velocità. La riduzione delle perdite nette è incoraggiante ma l'azienda deve raggiungere la break-even entro il Q2 2026. Si raccomanda:
+
+1. Accelerazione del lancio BetaBrain v2.0
+2. Apertura ufficio commerciale a Londra (mercato UK in forte crescita)
+3. Preparazione round Serie C da €20-25M
+4. Implementazione programma customer success per ridurre churn
+
+---
+
+**Data di redazione**: 20 Luglio 2025
+**Responsabile**: Dott.ssa Elena Verdi - CFO
+**Approvato**: Ing. Alessandro Neri - Amministratore Delegato

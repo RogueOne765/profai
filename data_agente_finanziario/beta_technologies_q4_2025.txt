@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q4 2025 - Beta Technologies S.p.A.
+
+## Sommario Esecutivo
+
+Il quarto trimestre 2025 chiude un anno eccezionale per Beta Technologies. I ricavi raggiungono i €40.1M (+18.9% rispetto al Q3), con un EBIT di €2.8M che conferma la solidità del modello di business. Il round Serie C da €25M è stato sottoscritto, portando la valorizzazione a €180M. L'espansione internazionale è ufficialmente avviata.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q4 2025 | Q3 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €40.1M | €33.7M | +19.0% |
+| Margine operativo lordo (EBITDA) | €6.8M | €4.2M | +61.9% |
+| Margine operativo (EBIT) | €2.8M | €0.5M | +460.0% |
+| Risultato netto | €2.1M | €0.2M | +950.0% |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: 3.4% (+2.7% rispetto al Q3 2025)
+- **ROI**: 2.3% (+1.8%)
+- **ROS**: 3.4% (+2.7%)
+- **Margine EBITDA**: 17.0% (+4.5%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €68.4M | Passivo corrente | €22.1M |
+| Attivo non corrente | €45.3M | Passivo non corrente | €12.8M |
+| **Totale attivo** | **€113.7M** | **Patrimonio netto** | €78.8M |
+| | | **Totale passivo** | **€113.7M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 3.09 (eccellente)
+- **Quick Ratio**: 2.97 (eccellente)
+- **Debt to Equity**: 0.44
+- **Indice di copertura degli interessi**: N/A (liquidità netta)
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Crescita Troppo Rapida**: La crescita del 72% annuo richiede continui investimenti in organico. Rischio di diluzione cultura aziendale.
+
+2. **Rischio di Dipendenza Clienti**: Il top 3 clienti è sceso al 31%, raggiungendo il target. Tuttavia, un nuovo cliente enterprise (€4.2M ARR) rappresenta da solo il 10% dei ricavi.
+
+3. **Rischio Regolamentare**: Nuova proposta di regolamentazione AI UE (AI Act) potrebbe richiedere certificazioni aggiuntive per BetaBrain.
+
+4. **Rischio Operativo**:
+   - Costi personale: +30% rispetto al Q3 (40 nuove assunzioni)
+   - Costi marketing: +20% (campagna lancio UK)
+   - Churn rate mensile: 1.5% (in miglioramento)
+
+### 3.2 Azioni Correttive Proposte
+
+- Piano assunzioni 2026: 80 nuove risorse, focus su sales e engineering
+- Certificazione AI Act compliance: budget €0.5M, timeline 6 mesi
+- Espansione Germania: studio di fattibilità, possibile apertura Q2 2026
+- M&A: valutazione target acquisizione nel segmento cybersecurity
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ✅ Fatturazione elettronica - Conforme
+- ✅ Privacy (GDPR) - Certificazione ISO 27001 ottenuta
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - N/A
+
+### 4.2 Audit Interne
+
+Audit annuale completato. Nessuna criticità significativa. Raccomandata implementazione SOX compliance in vista di possibile IPO 2027.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Runway (mesi) | < 12 | Illimitato (redditiva) | 🟢 OK |
+| Churn Rate | > 3% | 1.5% | 🟢 OK |
+| CAC/LTV | < 3.0 | 4.1 | 🟢 OK |
+| NRR (Net Revenue Retention) | < 100% | 118% | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+Il 2025 ha trasformato Beta Technologies da startup in crescita a azienda tech redditiva e strutturata. Con €125.3M di ricavi annuali e un utile netto di €0.1M, il percorso verso la scalabilità redditizia è confermato. Per il 2026 si raccomanda:
+
+1. Consolidamento presenza UK e avvio espansione Germania
+2. Preparazione roadmap IPO 2027 (SOX compliance, advisory board)
+3. Valutazione M&A nel segmento cybersecurity
+4. Target EBITDA margin > 20% nel Q4 2026
+
+---
+
+**Data di redazione**: 20 Gennaio 2026
+**Responsabile**: Dott.ssa Elena Verdi - CFO
+**Approvato**: Ing. Alessandro Neri - Amministratore Delegato

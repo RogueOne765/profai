@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q4 2025 - Alpha Industries S.p.A.
+
+## Sommario Esecutivo
+
+Il quarto trimestre 2025 chiude un anno di transizione. I ricavi registrano una crescita solida (+6.2% rispetto al Q3), trainata dalla ripresa della domanda nel settore industriale. Il piano di ristrutturazione ha generato risparmi significativi, con il margine EBITDA che torna sopra il 20%. La posizione di liquidità mostra un netto miglioramento.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q4 2025 | Q3 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €52.3M | €49.2M | +6.3% |
+| Margine operativo lordo (EBITDA) | €10.8M | €9.6M | +12.5% |
+| Margine operativo (EBIT) | €7.1M | €5.9M | +20.3% |
+| Risultato netto | €4.5M | €3.3M | +36.4% |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: 15.8% (+3.7% rispetto al Q3 2025)
+- **ROI**: 9.5% (+1.4%)
+- **ROS**: 15.8% (+3.7%)
+- **Margine EBITDA**: 20.7% (+1.2%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €29.5M | Passivo corrente | €22.8M |
+| Attivo non corrente | €44.5M | Passivo non corrente | €16.5M |
+| **Totale attivo** | **€74.0M** | **Patrimonio netto** | €34.7M |
+| | | **Totale passivo** | **€74.0M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 1.29 (migliorato)
+- **Quick Ratio**: 0.91 (ritornato in area sicura)
+- **Debt to Equity**: 1.13
+- **Indice di copertura degli interessi**: 5.2x
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Liquidità**: Il quick ratio a 0.91 indica un ritorno a livelli di sicurezza. La dismissione di asset non strategici ha contribuito per €2.8M.
+
+2. **Rischio di Credito**: Crediti in sofferenza ulteriormente ridotti a €2.0M (-20% rispetto al Q3)
+
+3. **Rischio di Redditività**: Il margine EBITDA ha superato nuovamente il 20%, confermando l'efficacia del piano di ristrutturazione
+
+4. **Rischio Operativo**:
+   - Costi materie prime: -2% rispetto al Q3 (primo calo dall'inizio anno)
+   - Costi energetici: stabili
+   - Costo del personale: +1%
+
+### 3.2 Azioni Correttive Proposte
+
+- Piano di ristrutturazione operativa: chiusura con risparmio reale di €1.7M
+- Nuova procedura di recupero crediti: DSO target < 45 giorni entro H1 2026
+- Rinegoziazione contratti fornitori: completata, risparmio annuo €0.9M
+- Dismissione asset non strategici: completata, incasso €2.8M
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ✅ Fatturazione elettronica - Pienamente conforme
+- ✅ Privacy (GDPR) - Policy aggiornata e implementata
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - Conformità confermata
+
+### 4.2 Audit Interne
+
+Audit completo sulla gestione del capitale circolante completato. Raccomandazioni implementate: processo di fatturazione automatizzato, riduzione tempi di incasso.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Quick Ratio | < 0.8 | 0.91 | 🟢 OK |
+| DSO | > 60 gg | 48 gg | 🟢 OK |
+| Margine EBITDA | < 15% | 20.7% | 🟢 OK |
+| Debt/EBITDA | > 4.0 | 2.5 | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+L'anno 2025 si chiude con una netta inversione di tendenza nel secondo semestre. Il piano di ristrutturazione ha restituito solidità finanziaria all'azienda. Per il 2026 si raccomanda:
+
+1. Consolidamento dei processi di efficientamento operativo
+2. Investimenti in automazione produzione (budget €4M)
+3. Sviluppo nuovi mercati esteri (Germania e Polonia)
+4. Revisione politica dividendi
+
+---
+
+**Data di redazione**: 15 Gennaio 2026
+**Responsabile**: Dott. Marco Bianchi - CFO
+**Approvato**: Dott. Roberto Rossi - Amministratore Delegato

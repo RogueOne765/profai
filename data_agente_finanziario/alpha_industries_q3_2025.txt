@@ -1,0 +1,112 @@
+# Rapporto Trimestrale Q3 2025 - Alpha Industries S.p.A.
+
+## Sommario Esecutivo
+
+Il terzo trimestre 2025 registra una stabilizzazione dopo il peggioramento del Q2. I ricavi rimangono stabili (+0.5% rispetto al Q2), mentre i margini mostrano i primi segnali di ripresa grazie all'avvio del piano di ristrutturazione operativa. La liquidità resta una priorità.
+
+---
+
+## 1. Dati Economici Fondamentali
+
+### 1.1 Conto Economico Sintetico
+
+| Voce | Q3 2025 | Q2 2025 | Variazione |
+|------|---------|---------|------------|
+| Ricavi delle vendite | €49.2M | €49.0M | +0.4% |
+| Margine operativo lordo (EBITDA) | €9.6M | €9.3M | +3.2% |
+| Margine operativo (EBIT) | €5.9M | €5.8M | +1.7% |
+| Risultato netto | €3.3M | €3.2M | +3.1% |
+
+### 1.2 Indicatori di Redditività
+
+- **ROE**: 12.1% (+0.3% rispetto al Q2 2025)
+- **ROI**: 8.1% (+0.2%)
+- **ROS**: 12.1% (+0.3%)
+- **Margine EBITDA**: 19.5% (+0.5%)
+
+---
+
+## 2. Situazione Patrimoniale
+
+### 2.1 Stato Patrimoniale Sintetico
+
+| Attivo | Importo | Passivo | Importo |
+|--------|---------|---------|---------|
+| Attivo corrente | €27.1M | Passivo corrente | €23.0M |
+| Attivo non corrente | €43.8M | Passivo non corrente | €17.0M |
+| **Totale attivo** | **€70.9M** | **Patrimonio netto** | €30.9M |
+| | | **Totale passivo** | **€70.9M** |
+
+### 2.2 Indici di Struttura
+
+- **Current Ratio**: 1.18 (in miglioramento)
+- **Quick Ratio**: 0.78 (in miglioramento ma ancora critico)
+- **Debt to Equity**: 1.30
+- **Indice di copertura degli interessi**: 3.9x
+
+---
+
+## 3. Analisi dei Rischi
+
+### 3.1 Aree di Allarme
+
+1. **Rischio di Liquidità**: Il quick ratio è migliorato a 0.78 ma rimane sotto la soglia critica di 0.8. Necessario accelerare gli interventi.
+
+2. **Rischio di Credito**: Crediti in sofferenza ridotti a €2.5M (-10.7%) grazie alla nuova procedura di recupero
+
+3. **Rischio di Redditività**: Il margine EBITDA mostra un lieve recupero dal 19.0% al 19.5%
+
+4. **Rischio Operativo**:
+   - Costi materie prime: +3% rispetto al Q2 (decelerazione)
+   - Costi energetici: +5% (decelerazione)
+   - Costo del personale: +2% (effetto piano di ristrutturazione)
+
+### 3.2 Azioni Correttive Proposte
+
+- Continuazione piano di riduzione costi operativi: €1.5M annui
+- Attivazione factoring su crediti commerciali: target €5M
+- Rinegoziazione contratti fornitori: in corso, previsto risparmio €0.8M
+- Dismissione asset non strategici: valutazione in corso per €3.2M
+
+---
+
+## 4. Conformità e Audit
+
+### 4.1 Status Compliance
+
+- ✅ Fatturazione elettronica - Irregolarità risolte
+- 🔄 Privacy (GDPR) - Aggiornamento policy in fase di completamento
+- ✅ Compliance fiscale - Verificata
+- ✅ Normativa antiriciclaggio - Conformità confermata
+
+### 4.2 Audit Interne
+
+Audit approfondito sulla gestione del capitale circolante avviato. Prime evidenze: DSO riducibile con processi automatizzati.
+
+---
+
+## 5. Indicatori di Allerta Precoci
+
+| Indicatore | Soglia Critica | Valore Attuale | Status |
+|------------|----------------|----------------|--------|
+| Quick Ratio | < 0.8 | 0.78 | 🟡 ATTENZIONE |
+| DSO | > 60 gg | 58 gg | 🟡 ATTENZIONE |
+| Margine EBITDA | < 15% | 19.5% | 🟡 ATTENZIONE |
+| Debt/EBITDA | > 4.0 | 3.0 | 🟢 OK |
+
+---
+
+## 6. Conclusioni e Raccomandazioni
+
+La società mostra i primi segnali di stabilizzazione dopo il calo del Q2. Il piano di ristrutturazione sta producendo effetti ma richiede accelerazione. Si raccomanda:
+
+1. Attivazione immediata factoring su crediti commerciali
+2. Completamento dismissione asset non strategici entro Q4
+3. Potenziamento monitoraggio costi operativi
+4. Preparazione piano industriale 2026
+
+---
+
+**Data di redazione**: 15 Ottobre 2025
+**Responsabile**: Dott. Marco Bianchi - CFO
+**Approvato**: Dott. Roberto Rossi - Amministratore Delegato
