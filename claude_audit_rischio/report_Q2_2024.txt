@@ -1,0 +1,118 @@
+FINSECURE ANALYTICS - FINANCIAL RISK REPORT Q2 2024
+================================================================
+CONFIDENTIAL - Internal Use Only
+Date: June 30, 2024
+Prepared by: Risk Management Department
+
+EXECUTIVE SUMMARY
+-----------------
+Il secondo trimestre 2024 ha evidenziato un rallentamento della crescita, con ricavi di €40.1M
+(-5.2% rispetto al Q2 2023 di €42.3M). La pressione sui margini si è intensificata a causa
+dell'aumento dei costi operativi e delle tensioni nei mercati finanziari.
+
+INDICATORI CHIAVE DI PERFORMANCE (KPI)
+---------------------------------------
+- Ricavi Totali: €40.1M (-5.2% YoY)
+- EBITDA: €8.3M (20.7% margin) - in calo dal 23.5% Q2 2023
+- Utile Netto: €3.9M (9.7% margin)
+- Patrimonio Netto: €89.2M
+- Debito Finanziario Netto: €36.8M
+- Leverage Ratio (Debt/EBITDA): 3.73x  ← BREACH COVENANT CONFERMATO
+- Current Ratio: 1.18
+- Quick Ratio: 0.91  ← DETERIORAMENTO RISPETTO Q1
+- DSO (Days Sales Outstanding): 67 giorni (Q1: 58 giorni) ← PEGGIORAMENTO INCASSI
+- Return on Equity (ROE): 4.37%
+- Return on Assets (ROA): 1.88%
+
+EVENTI RILEVANTI Q2 2024
+--------------------------
+1. BREACH COVENANT: Leverage Ratio ha superato soglia 3.5x → in negoziazione con banche
+2. Perdita cliente strategico (Nexum Capital Group - €3.2M/anno) → impatto stimato -€0.8M H2
+3. Incremento costi personale: +11.3% (accordo sindacale non previsto nel budget)
+4. Svalutazione straordinaria portafoglio azionario: -€1.2M (mercati emergenti)
+5. Avvio procedura di ristrutturazione divisione advisory (costi stimati €2.1M)
+
+ANALISI DEL PORTAFOGLIO CREDITI
+---------------------------------
+Esposizione totale crediti commerciali: €21.4M (incremento €2.7M vs Q1)
+- Crediti entro 30 giorni: €11.8M (55.1%)
+- Crediti 31-60 giorni: €4.9M (22.9%)
+- Crediti 61-90 giorni: €2.9M (13.6%)
+- Crediti oltre 90 giorni: €1.8M (8.4%)  ← +63% vs Q1 2024
+
+Nuovi insoluti rilevati: €0.43M (3 posizioni)
+Fondo svalutazione crediti: €1.1M (5.1% del totale)
+
+ESPOSIZIONE RISCHIO MERCATO
+-----------------------------
+Portafoglio investimenti: €20.3M (riduzione per svalutazioni)
+- Strumenti obbligazionari: €9.8M
+- Strumenti azionari: €5.9M (da €7.8M - perdita non realizzata €0.7M residua)
+- Fondi alternativi: €4.1M
+- Liquidità: €0.5M  ← LIVELLO CRITICO, sotto soglia covenant (€5M)
+
+NOTA CRITICA: La liquidità disponibile (€0.5M) è scesa sotto la soglia minima covenant (€5M).
+Sono state attivate linee di credito revolving per €4.5M per rispettare formalmente il covenant,
+ma questo incrementa ulteriormente l'esposizione debitoria.
+
+RISCHIO OPERATIVO - DORA ASSESSMENT
+--------------------------------------
+Assessment completato a Maggio 2024:
+- Gap critici rilevati: 7 (di cui 3 ad alto impatto)
+- Gap medi: 12
+- Gap minori: 19
+- Rischio ICT residuo stimato: €8.5M (stima perdita massima attesa da incidenti cyber)
+- Piano di remediation: €3.2M investimenti previsti H2 2024
+
+COMPLIANCE E REGULATORY
+-------------------------
+- Rating creditizio: BBB- (Fitch) - outlook NEGATIVO (downgrade da STABILE)  ← PEGGIORAMENTO
+- Covenant bancari: IN WAIVER NEGOZIAZIONE
+  * Leverage Ratio: 3.73x (soglia 3.5x) - BREACH
+  * Interest Coverage: 2.8x (soglia 3.0x) - BREACH  ← NUOVO BREACH
+  * Liquidity: ripristinata formalmente con revolving (vedi nota sopra)
+
+ANOMALIE CONTABILI E RISCHI DI DISCLOSURE
+-------------------------------------------
+1. I costi di ristrutturazione (€2.1M) sono stati classificati come "non-recurring" ma
+   rappresentano il terzo anno consecutivo di voci straordinarie → possibile NORMALIZZAZIONE
+   richiesta dagli analisti e dalle banche
+
+2. Alcune commissioni di performance (€0.67M) sono state riconosciute a giugno anticipando
+   il raggiungimento degli obiettivi H2 → RISCHIO STORNO se obiettivi non raggiunti
+
+3. L'accordo con banche per il waiver del covenant prevede clausole ratchet non divulgate
+   nel bilancio intermedio → possibile problema di disclosure secondo IAS 1
+
+4. Variazione metodologia valutazione fondi alternativi (da Livello 2 a Livello 3 IFRS 13)
+   senza adeguata disclosure → potenziale rilievo da parte dei revisori
+
+SCENARI DI RISCHIO AGGIORNATI
+--------------------------------
+Scenario Base (probabilità 40%):
+- Waiver covenant ottenuto con covenant rivisti
+- Ricavi FY2024: €162-168M
+- Piano di ristrutturazione completato entro Q1 2025
+
+Scenario Avverso (probabilità 40%):
+- Waiver non ottenuto / condizioni molto onerose
+- Accelerazione rimborso debiti (€15-20M entro 6 mesi)
+- Necessità aumento di capitale o asset disposal
+- Possibile downgrade a BB+ con impatto costo debito +80-120bps
+
+Scenario Estremo (probabilità 20%):
+- Cross-default su linee di credito multiple
+- Procedura di ristrutturazione stragiudiziale
+- Vendita forzata asset per soddisfare creditori
+
+AZIONI URGENTI RACCOMANDATE
+------------------------------
+1. IMMEDIATO: Finalizzare negoziazione waiver covenant entro 30 giorni
+2. IMMEDIATO: Ripristinare liquidità strutturale (non solo tramite revolving)
+3. URGENTE: Accelerare incasso crediti scaduti (DSO target: 55 giorni)
+4. URGENTE: Bloccare riconoscimento anticipato commissioni performance
+5. PRIORITARIO: Migliorare disclosure su clausole covenant e metodi valutazione
+6. PRIORITARIO: Piano dismissione asset non-core per ridurre leverage
+
+================================================================
+END OF REPORT - Q2 2024

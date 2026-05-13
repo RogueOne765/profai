@@ -1,0 +1,148 @@
+# Rapporto di Audit interno - Esercizio 2024
+## Beta Financial Services S.r.l.
+
+---
+
+## 1. Informazioni Generali
+
+**Società**: Beta Financial Services S.r.l.
+**Periodo di riferimento**: Esercizio 2024 (01/01/2024 - 31/12/2024)
+**Data del rapporto**: 20 Febbraio 2025
+**Team di audit**: Dott.ssa Laura Martini (Lead Auditor), Dott. Giuseppe Conti, Dott.ssa Anna Ferraro
+
+---
+
+## 2. Ambito dell'Audit
+
+L'audit interno ha riguardato le seguenti aree:
+- Contabilità generale e regolarità contabile
+- Gestione crediti e debiti
+- Procedure di fatturazione e incasso
+- Conformità normativa (GDPR, AML, Antifrode)
+- Sistemi di controllo interno
+- Gestione della tesoreria
+
+---
+
+## 3. Sintesi dei Risultati
+
+### 3.1 Criticità Rilevanti
+
+| # | Area | Criticità | Rischio | Priorità |
+|---|------|-----------|---------|----------|
+| 1 | Crediti | Presenza di crediti prescritti per €185.000 non svalutati | Elevato | Alta |
+| 2 | Fatturazione | Ritardi medi di 23 giorni nella emissione fatture | Medio | Media |
+| 3 | AML | Formazione personale insufficiente (solo 60% ha completato corso) | Elevato | Alta |
+| 4 | GDPR | Policy privacy non aggiornata dal 2022 | Medio | Media |
+| 5 | Tesoreria | Assenza di piano di emergenza per crisi di liquidità | Elevato | Alta |
+
+### 3.2 Criticità MinorI
+
+- Procedure di backup dati non completamente documentate
+- Alcuni contratti di fornitura scaduti non rinnovati
+- Sistema di gestione documentale da migliorare
+
+---
+
+## 4. Dettaglio delle Criticità
+
+### 4.1 Crediti in Sofferenza
+
+**Reperto n. 1**: Durante l'analisi dei crediti, il team di audit ha identificato crediti prescritti per un totale di €185.000 che non sono stati oggetto di svalutazione. In particolare:
+
+- Cliente Gamma S.p.A.: €72.000 (prescritti da marzo 2024)
+- Cliente Delta S.r.l.: €58.000 (prescritti da giugno 2024)
+- Cliente Epsilon S.p.A.: €55.000 (prescritti da settembre 2024)
+
+**Impatto**: La società ha sovrastimato l'attivo di stato patrimoniale per €185.000.
+
+**Raccomandazione**: Procedere immediatamente alla svalutazione dei crediti e avviare procedimenti per il recupero crediti ove possibile.
+
+### 4.2 Ritardi nella Fatturazione
+
+**Reperto n. 2**: L'analisi campionaria ha evidenziato ritardi medi di 23 giorni tra la prestazione del servizio e l'emissione della fattura. Su 150 fatture campionate:
+
+- 45 fatture (30%) con ritardo > 30 giorni
+- 38 fatture (25%) con ritardo tra 15 e 30 giorni
+- 67 fatture (45%) nei termini
+
+**Impatto**: Perdita di opportunità di incasso e possibile violazione dei termini contrattuali.
+
+**Raccomandazione**: Implementare un sistema automatizzato di fatturazione con solleciti automatici.
+
+### 4.3 Formazione Anti-riciclaggio
+
+**Reperto n. 3**: Solo il 60% del personale ha completato il corso di formazione AML obbligatorio. Questo rappresenta una violazione della normativa che richiede formazione annuale per tutto il personale esposto.
+
+**Impatto**: Rischio sanzionatorio e reputazionale.
+
+**Raccomandazione**: Completare la formazione entro 30 giorni per tutto il personale.
+
+---
+
+## 5. Indicatori Chiave di Performance
+
+| Indicatore | Target | Rilevato | Scostamento |
+|------------|--------|----------|-------------|
+| Accuratezza contabile | >99% | 97.2% | -1.8% |
+| Tempo medio incasso | <45 gg | 52 gg | +7 gg |
+| Errori fatturazione | <2% | 3.8% | +1.8% |
+| Formazione completata | 100% | 60% | -40% |
+| Audit findings chiusi | >90% | 45% | -45% |
+
+---
+
+## 6. Matrice di Rischio
+
+```
+                    IMPATTO
+              Basso   Medio   Alto
+        Alto |  MED  |  ALTA | CRIT
+LIKELY
+     Medio |  BASSA |  MED  |  ALTA
+       Basso| BASSA | BASSA |  MED
+```
+
+**Aree critiche identificate**:
+- Crediti non svalutati (Rischio: ALTO)
+- Compliance AML (Rischio: ALTO)
+- Pianificazione tesoreria (Rischio: ALTO)
+
+---
+
+## 7. Azioni Correttive
+
+| # | Azione | Responsabile | Scadenza | Stato |
+|---|--------|--------------|----------|-------|
+| 1 | Svalutazione crediti prescritti | CFO | 31/03/2025 | Da avviare |
+| 2 | Aggiornamento procedura fatturazione | Responsabile Amm.vo | 30/04/2025 | In corso |
+| 3 | Completamento formazione AML | HR | 15/03/2025 | Da avviare |
+| 4 | Revisione policy privacy | DPO | 30/06/2025 | Da avviare |
+| 5 | Piano emergenza tesoreria | CFO | 31/03/2025 | Da avviare |
+
+---
+
+## 8. Conclusioni
+
+L'audit ha evidenziato **3 criticità di alta priorità** che richiedono interventi immediati:
+
+1. **Crediti prescritti non svalutati**: Situazione contabile non corretta con impatto diretto sul bilancio
+2. **Compliance AML**: Rischio sanzionatorio significativo
+3. **Pianificazione tesoreria**: Assenza di preparedeness per crisi di liquidità
+
+La società dovrà presentare un piano di rimedio entro 30 giorni dalla ricezione del presente rapporto.
+
+---
+
+## 9. Follow-up
+
+Prossima verifica programmata: **15 Maggio 2025**
+
+---
+
+**Firmato**:
+Dott.ssa Laura Martini - Lead Auditor
+Dott. Giuseppe Conti - Auditor
+Dott.ssa Anna Ferraro - Auditor
+
+Beta Financial Services S.r.l. - Funzione Internal Audit

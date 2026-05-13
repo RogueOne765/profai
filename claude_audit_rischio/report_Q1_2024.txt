@@ -1,0 +1,116 @@
+FINSECURE ANALYTICS - FINANCIAL RISK REPORT Q1 2024
+================================================================
+CONFIDENTIAL - Internal Use Only
+Date: March 31, 2024
+Prepared by: Risk Management Department
+
+EXECUTIVE SUMMARY
+-----------------
+FinSecure Analytics ha registrato nel primo trimestre 2024 un fatturato consolidato di €42.3 milioni,
+con una crescita del 7.2% rispetto al Q1 2023 (€39.5M). Il margine operativo si attesta al 18.4%,
+in leggero calo rispetto al 19.1% dello stesso periodo dell'anno precedente.
+
+INDICATORI CHIAVE DI PERFORMANCE (KPI)
+---------------------------------------
+- Ricavi Totali: €42.3M (+7.2% YoY)
+- EBITDA: €9.8M (23.2% margin)
+- Utile Netto: €5.1M (12.1% margin)
+- Patrimonio Netto: €87.4M
+- Debito Finanziario Netto: €34.2M
+- Leverage Ratio (Debt/EBITDA): 3.49x  ← ATTENZIONE: vicino soglia covenant 3.5x
+- Current Ratio: 1.23
+- Quick Ratio: 0.97  ← sotto 1.0, possibile tensione di liquidità
+- Return on Equity (ROE): 5.84%
+- Return on Assets (ROA): 2.31%
+
+ANALISI DEL PORTAFOGLIO CREDITI
+---------------------------------
+Esposizione totale crediti commerciali: €18.7M
+- Crediti entro 30 giorni: €11.2M (59.9%)
+- Crediti 31-60 giorni: €4.1M (21.9%)
+- Crediti 61-90 giorni: €2.3M (12.3%)
+- Crediti oltre 90 giorni: €1.1M (5.9%)  ← incremento del 34% rispetto Q4 2023
+
+Svalutazione crediti: €0.89M (4.76% del totale)
+Nota: il fondo svalutazione è stato incrementato del 12% rispetto all'esercizio precedente.
+
+TOP 5 ESPOSIZIONI CLIENTI (concentrazione rischio)
+---------------------------------------------------
+1. Nexum Capital Group: €3.2M (17.1% del portafoglio)
+2. Horizons Investment Partners: €2.8M (15.0%)
+3. Meridian Asset Management: €1.9M (10.2%)
+4. Silverstone Holdings: €1.4M (7.5%)
+5. BlueRock Ventures: €1.1M (5.9%)
+Totale top 5: €10.4M (55.6% concentrazione)  ← RISCHIO CONCENTRAZIONE ELEVATO
+
+ESPOSIZIONE AL RISCHIO DI MERCATO
+------------------------------------
+Portafoglio investimenti: €22.1M
+- Strumenti obbligazionari (Investment Grade): €9.4M
+- Strumenti azionari: €7.8M  ← volatilità elevata Q1: -8.3%
+- Fondi alternativi: €4.9M
+- Liquidità: €1.0M (riserva minima mantenuta, non raccomandata a questo livello)
+
+Value at Risk (VaR 95%, 10 giorni): €1.84M
+Stress Test scenario avverso: -€4.2M (potenziale perdita in scenario recessivo)
+
+RISCHIO DI TASSO DI INTERESSE
+-------------------------------
+- Debiti a tasso variabile: €21.3M (62.3% del totale debiti)
+- Sensitivity +100bps: impatto negativo €0.21M annuo sul costo del debito
+- Sensitivity +200bps: impatto negativo €0.43M annuo sul costo del debito
+- Coperture (Interest Rate Swap): coprono solo il 35% dell'esposizione variabile  ← SOTTOCOPERTURA
+
+COMPLIANCE E REGULATORY
+-------------------------
+- Rating creditizio attuale: BBB- (Fitch) - outlook STABILE
+- Covenant bancari:
+  * Leverage Ratio max: 3.5x → attuale 3.49x  ← BREACH IMMINENTE
+  * Interest Coverage min: 3.0x → attuale 3.2x (margine ridotto)
+  * Minimum Liquidity: €5.0M → attuale €6.1M (OK ma in calo)
+
+- Adempimenti normativi:
+  * DORA compliance: in corso (deadline Q3 2024) - GAP riscontrati nei controlli ICT
+  * MiFID II: conforme
+  * GDPR: conforme, ultimo audit Gennaio 2024
+  * Antiriciclaggio (AML): 3 segnalazioni SOS nel trimestre (nella norma)
+
+NOTE CONTABILI E ANOMALIE RILEVATE
+-------------------------------------
+1. Ricavi riconosciuti per €2.1M relativi a contratti con performance obligations non ancora completate
+   → Possibile anticipazione di ricavi - verificare con principi IFRS 15
+2. Ammortamento attrezzature IT ridotto del 18% rispetto al budget (€0.34M in meno)
+   → Modifica vita utile non documentata adeguatamente nei verbali CDA
+3. Costi di ristrutturazione capitalizzati per €0.78M (prevista spesatura diretta nel piano iniziale)
+   → Impatto positivo artificiale sull'EBITDA del trimestre
+4. Accantonamento fondo rischi: €0.5M vs €1.2M raccomandato dalla revisione interna
+   → SOTTOSTIMA SIGNIFICATIVA del fondo rischi
+
+OUTLOOK E SCENARI
+------------------
+Scenario Base (probabilità 55%):
+- Fatturato FY2024: €170-175M
+- EBITDA margin: 22-23%
+- Leverage fine anno: 3.2x
+
+Scenario Avverso (probabilità 30%):
+- Contrazione ricavi del 8-12%
+- Leverage potrebbe superare 3.5x → BREACH covenant
+- Necessità linee di credito aggiuntive per €10-15M
+
+Scenario Estremo (probabilità 15%):
+- Contrazione ricavi del 20%+
+- Rischio rinegoziazione debiti
+- Possibili svalutazioni portafoglio investimenti per €3-5M
+
+RACCOMANDAZIONI
+----------------
+1. URGENTE: Rinegoziare covenant Leverage Ratio (margine <1% dalla soglia)
+2. Incrementare coperture tasso (portare hedge ratio al 60-70%)
+3. Ridurre concentrazione crediti (top 5 > 55% - soglia raccomandata 40%)
+4. Aumentare accantonamento fondo rischi ad almeno €1.0M
+5. Completare assessment DORA entro Q2 2024
+6. Chiarire contabilizzazione ricavi anticipati (IFRS 15)
+
+================================================================
+END OF REPORT - Q1 2024

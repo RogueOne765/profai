@@ -1,0 +1,131 @@
+FINSECURE ANALYTICS - AUDIT INTERNO COMPLIANCE
+================================================================
+CONFIDENTIAL - Restricted Distribution
+Data Audit: Luglio 15, 2024
+Revisore: Internal Audit Department (Senior Auditor: M. Ferrante)
+
+OGGETTO: Audit di Conformità Normativa e Controlli Interni - H1 2024
+
+1. SCOPE DELL'AUDIT
+--------------------
+- Periodo: Gennaio 1 - Giugno 30, 2024
+- Aree esaminate: Financial Reporting, AML/KYC, DORA, MiFID II, GDPR
+- Campione transazioni analizzate: 847 operazioni
+- Interviste condotte: 23 (management, compliance, IT, operations)
+
+2. RISULTATI AUDIT FINANCIAL REPORTING
+----------------------------------------
+
+FINDING FR-01 [ALTA CRITICITÀ]:
+Riconoscimento anticipato di ricavi
+- €2.1M Q1 2024 e €0.67M Q2 2024 riconosciuti prima del completamento delle performance obligations
+- Violazione potenziale IFRS 15 paragrafo 31-38
+- Impatto: sovrastima ricavi H1 di €2.77M (+3.4%)
+- Raccomandazione: Storno e riclassificazione; revisione policy revenue recognition
+
+FINDING FR-02 [ALTA CRITICITÀ]:
+Accantonamento fondo rischi inadeguato
+- Accantonato €1.6M vs raccomandazione revisione interna €2.4M
+- Delta: -€0.8M (33% di sottostima)
+- Impatto: sovrastima utile netto di €0.8M
+- Raccomandazione: Integrazione immediata del fondo rischi
+
+FINDING FR-03 [MEDIA CRITICITÀ]:
+Disclosure covenant e waiver
+- Accordo waiver con clausole ratchet non adeguatamente divulgato
+- Non conformità IAS 1 paragrafo 134-136 (informazioni sui rischi)
+- Raccomandazione: Integrazione nota integrativa con dettaglio clausole
+
+FINDING FR-04 [MEDIA CRITICITÀ]:
+Cambio metodologia valutazione asset
+- Fondi alternativi riclassificati da Livello 2 a Livello 3 IFRS 13 senza adeguata disclosure
+- Possibile gestione discrezionale del fair value
+- Raccomandazione: Disclosure retroattiva e review politica di valutazione
+
+FINDING FR-05 [BASSA CRITICITÀ]:
+Capitalizzazione costi ristrutturazione
+- Terzo anno consecutivo di costi "non-recurring" capitalizzati
+- Potenziale misrepresentation della natura ricorrente dei costi
+- Raccomandazione: Valutare spesatura diretta e revisione classificazione
+
+3. RISULTATI AUDIT AML/KYC
+----------------------------
+
+FINDING AML-01 [ALTA CRITICITÀ]:
+Procedure KYC clienti istituzionali
+- 12 clienti istituzionali (su 89 esaminati = 13.5%) con documentazione KYC incompleta
+- 3 clienti senza verifica Ultimate Beneficial Owner (UBO) aggiornata
+- Non conformità D.Lgs. 231/2007 art. 17-19
+- Raccomandazione: Completamento documentazione entro 60 giorni; notifica all'UIF se necessario
+
+FINDING AML-02 [MEDIA CRITICITÀ]:
+Monitoraggio transazioni anomale
+- Sistema di transaction monitoring non aggiornato ai nuovi threshold (ultimo aggiornamento: 2022)
+- 7 transazioni che avrebbero dovuto generare alert non sono state segnalate
+- Raccomandazione: Aggiornamento sistema entro 90 giorni
+
+FINDING AML-03 [BASSA CRITICITÀ]:
+Formazione personale AML
+- 34% del personale front-office non ha completato la formazione annuale obbligatoria
+- Raccomandazione: Completamento formazione entro 30 giorni
+
+4. RISULTATI AUDIT DORA (Digital Operational Resilience Act)
+--------------------------------------------------------------
+
+FINDING DORA-01 [ALTA CRITICITÀ]:
+ICT Risk Management Framework
+- Framework ICT non completamente documentato (gap su 40% dei processi critici)
+- Mancanza di test di resilienza operativa per 3 sistemi critici
+- Deadline compliance DORA: Gennaio 2025 - RISCHIO MANCATO ADEMPIMENTO
+
+FINDING DORA-02 [ALTA CRITICITÀ]:
+Incident Reporting
+- Procedura di notifica incidenti ICT non allineata ai requisiti DORA art. 17-23
+- Tempi di notifica previsti DORA (4h per incidenti gravi) non rispettabili con processo attuale
+- Raccomandazione: Revisione urgente procedura; implementazione sistema automatico notifiche
+
+FINDING DORA-03 [MEDIA CRITICITÀ]:
+Third-Party Risk (TPP)
+- 8 fornitori critici IT senza assessment DORA-compliant
+- Contratti con 3 fornitori principali da rinegoziare per includere clausole DORA
+- Raccomandazione: Assessment TPP entro Q3 2024
+
+5. RISULTATI AUDIT MiFID II
+-----------------------------
+
+FINDING MIFID-01 [BASSA CRITICITÀ]:
+Best Execution Policy
+- Policy aggiornata ma mancano 2 evidenze di review trimestrale
+- Raccomandazione: Completare documentazione review mancanti
+
+FINDING MIFID-02 [BASSA CRITICITÀ]:
+Product Governance
+- Target market assessment di 4 prodotti non aggiornato post modifica caratteristiche
+- Raccomandazione: Aggiornamento entro 45 giorni
+
+6. RIEPILOGO FINDINGS PER CRITICITÀ
+-------------------------------------
+| Livello      | Numero | Sanabile entro |
+|--------------|--------|----------------|
+| Alta         | 5      | 30-60 giorni   |
+| Media        | 4      | 60-90 giorni   |
+| Bassa        | 3      | 90-120 giorni  |
+| TOTALE       | 12     |                |
+
+7. RATING COMPLESSIVO AUDIT
+-----------------------------
+Rating Compliance: INSUFFICIENTE (score: 48/100)
+Rating Controlli Interni: PARZIALMENTE ADEGUATO (score: 61/100)
+Rating Risk Management: INSUFFICIENTE (score: 44/100)
+
+NOTA: Tre consecutive valutazioni sotto soglia (60/100) attivano procedura di escalation
+al Consiglio di Amministrazione e al Collegio Sindacale.
+
+8. PIANO DI REMEDIATION RICHIESTO
+-----------------------------------
+L'azienda deve presentare un Piano di Remediation formale entro 15 giorni dalla presente,
+con milestone specifiche, responsabili e budget allocato.
+Budget stimato remediation: €4.8-6.2M (H2 2024 - H1 2025)
+
+================================================================
+END OF AUDIT REPORT - H1 2024

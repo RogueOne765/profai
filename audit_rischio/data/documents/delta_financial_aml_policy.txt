@@ -1,0 +1,183 @@
+# Policy Anticorruzione e Antiriciclaggio
+## Delta Financial Group S.p.A.
+
+---
+
+## SEZIONE 1: PREMESSA
+
+La presente policy ha lo scopo di definire i principi e le procedure che Delta Financial Group S.p.A. adotta per:
+- Prevenire il riciclaggio di denaro e il finanziamento del terrorismo
+- Contrastare la corruzione e le frodi
+- Garantire la conformità alla normativa nazionale ed europea in materia
+
+**Riferimenti normativi**:
+- D.Lgs. 231/2007 e successive modifiche
+- Regolamento UE 2018/1805
+- Legge 190/2012 (Legge Anticorruzione)
+- Linee guida UIC
+
+---
+
+## SEZIONE 2: AMBITO DI APPLICAZIONE
+
+La presente policy si applica a:
+- Tutti i dipendenti della società
+- Collaboratori e consulenti esterni
+- Fornitori e partner commerciali
+- Società controllate e collegate
+
+---
+
+## SEZIONE 3: OBBLIGHI DI ADEGUATA VERIFICA
+
+### 3.1 Clienti
+
+Per ogni cliente è obbligatorio effettuare:
+
+1. **Identificazione**: Verifica dell'identità tramite documento valido
+2. **Titolare effettivo**: Identificazione del soggetto per conto del quale opera il cliente
+3. **Scopo della relazione**: Comprensione della natura e dello scopo del rapporto
+4. **Monitoraggio continuo**: Verifica nel tempo della coerenza delle operazioni
+
+### 3.2 Soggetti Rischiosi
+
+Classificazione dei clienti per profilo di rischio:
+
+| Livello rischio | Criteri | Frequenza aggiornamento |
+|-----------------|---------|------------------------|
+| Basso | Residenti UE, operazioni standard | Annuale |
+| Medio | Operazioni complesse, paesi a rischio | Semestrale |
+| Alto | PEP, paesi ad alto rischio | Trimestrale |
+| Massimo | Soggetti sanzionati | Immediato |
+
+---
+
+## SEZIONE 4: SEGNALAZIONE DELLE OPERAZIONI SOSPETTE
+
+### 4.1 Obbligo di segnalazione
+
+Tutti i dipendenti hanno l'obbligo di segnalare qualsiasi operazione che presenti elementi di anomalìa, tra cui:
+
+- Operazioni inconsistenti con il profilo del cliente
+- Operazioni con paesi a rischio (paradisi fiscali)
+- Strutture inusuali o ingiustificate
+- Rifiuto del cliente di fornire documentazione richiesta
+- Operazioni che comportano l'utilizzo di contante superiore a €3.000
+
+### 4.2 Procedura di segnalazione
+
+```
+1. Dipendente rileva anomalia
+         ↓
+2. Compila modulo interno SAR (Suspicious Activity Report)
+         ↓
+3. Invia a Responsabile Compliance entro 24 ore
+         ↓
+4. Responsabile valuta e, se confermato, invia a UIF entro 30 giorni
+         ↓
+5. Archiviazione per 10 anni
+```
+
+### 4.3 Protezione del segnalante
+
+È garantita la protezione del dipendente che effettua segnalazioni in buona fede. Sono vietate ritorsioni di qualsiasi tipo.
+
+---
+
+## SEZIONE 5: CONSERVAZIONE E AGGIORNAMENTO
+
+### 5.1 Registrazioni
+
+Tutti i documenti e le registrazioni devono essere conservati per:
+- **Documenti identificazione clienti**: 10 anni dalla cessazione del rapporto
+- **Segnalazioni UIF**: 10 anni dalla data di segnalazione
+- **Documentazione operativa**: 10 anni
+
+### 5.2 Aggiornamento dati
+
+I dati dei clienti devono essere aggiornati:
+- Automaticamente ad ogni operazione significativa
+- A richiesta del cliente
+- In caso di informazioni da fonti esterne (es. liste sanzioni)
+
+---
+
+## SEZIONE 6: FORMAZIONE
+
+### 6.1 Programma formativo
+
+Tutti i dipendenti devono completare:
+
+| Tipo formazione | Frequenza | Durata |
+|-----------------|-----------|--------|
+| Formazione base AML | Iniziale + annuale | 4 ore |
+| Aggiornamento normativo | Annuale | 2 ore |
+| Workshop casi pratici | Semestrale | 2 ore |
+
+### 6.2 Verifica apprendimento
+
+Al termine di ogni sessione formativa è prevista una verifica con test a risposta multipla (soglia minima: 80%).
+
+---
+
+## SEZIONE 7: SANZIONI
+
+### 7.1 Sanzioni interne
+
+La violazione della presente policy comporta:
+- Richiamo scritto
+- Sospensione da mansioni a rischio
+- Licenziamento per giusta causa nei casi più gravi
+
+### 7.2 Sanzioni esterne
+
+Le violazioni possono comportare sanzioni amministrative e penali previste dalla normativa vigente, incluse:
+- Sanzioni pecuniarie fino a €5.000.000
+- Sanzioni interdittive
+- Responsabilità amministrativa dell'ente
+
+---
+
+## SEZIONE 8: CONTROLLI INTERNI
+
+### 8.1 Attività di audit
+
+La Funzione Compliance effettua:
+- **Audit ordinari**: annuale, su tutte le aree
+- **Audit straordinarie**: in caso di segnalazioni o anomalie
+- **Self-assessment**: trimestrale da parte dei responsabili di area
+
+### 8.2 Indicatori di performance
+
+| Indicatore | Target | Frequenza rilevazione |
+|------------|--------|----------------------|
+| Clienti verificati entro termini | >95% | Mensile |
+| Formazione completata | 100% | Trimestrale |
+| Segnalazioni gestite entro 30 gg | >90% | Mensile |
+| Audit findings chiusi | >85% | Semestrale |
+
+---
+
+## SEZIONE 9: RESPONSABILITÀ
+
+| Ruolo | Responsabilità |
+|-------|----------------|
+| Consiglio di Amministrazione | Approvazione policy, supervisione |
+| CEO | Implementazione, risorse |
+| Responsabile Compliance | Coordinamento, reporting, formazione |
+| Dirigenti | Implementazione nelle aree di competenza |
+| Tutti i dipendenti | Conformità, segnalazione anomalie |
+
+---
+
+## SEZIONE 10: ENTRATA IN VIGORE
+
+La presente policy entra in vigore dal 1 Gennaio 2025 e si applica a partire da tale data. Le eventuali modifiche saranno comunicate a tutti i destinatari.
+
+**Ultimo aggiornamento**: 15 Dicembre 2024
+**Prossima revisione**: Dicembre 2025
+
+---
+
+*Approvato dal Consiglio di Amministrazione*
+*Delta Financial Group S.p.A.*
