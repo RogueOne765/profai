@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
+import morgan from 'morgan';
 import authorsRouter from './routes/authors.js';
 import articlesRouter from './routes/articles.js';
 import quotesRouter from './routes/quotes.js';
@@ -10,6 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const distPath = path.join(__dirname, '../spa/dist');
 
+app.use(cors({ origin: process.env.SITE_URL || 'http://localhost:5173' }));
+app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/v1/authors', authorsRouter);
