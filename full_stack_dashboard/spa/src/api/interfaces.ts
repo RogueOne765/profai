@@ -20,3 +20,9 @@ export interface CreateArticleInput {
   doi?: string;
   author_ids?: number[];
 }
+
+export interface Author {
+  id: number;
+  name: string;
+  surname: string;
+}

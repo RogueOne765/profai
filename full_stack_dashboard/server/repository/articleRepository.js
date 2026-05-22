@@ -36,8 +36,9 @@ export class ArticleRepository {
     return this.groupArticles(rows);
   }
 
-  async findById(id) {
-    const rows = await this.withAuthors(db('articles')).where('articles.id', id);
+  async findById(id, trx) {
+    const client = trx ? trx : db;
+    const rows = await this.withAuthors(client.table('articles')).where('articles.id', id);
     return this.groupArticles(rows)[0] ?? null;
   }
 
@@ -61,7 +62,7 @@ export class ArticleRepository {
           author_ids.map((author_id) => ({ article_id: id, author_id })),
         );
       }
-      return this.findById(id);
+      return this.findById(id, trx);
     });
   }
 
@@ -78,7 +79,7 @@ export class ArticleRepository {
           );
         }
       }
-      return this.findById(id);
+      return this.findById(id, trx);
     });
   }
 
