@@ -49,7 +49,7 @@ export function Component() {
       notifications.show({
         color: 'red',
         title: 'Errore',
-        message: 'Impossibile eliminare l\'articolo',
+        message: "Impossibile eliminare l'articolo",
       });
     }
   };

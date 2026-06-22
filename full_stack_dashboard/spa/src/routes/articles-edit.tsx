@@ -36,10 +36,10 @@ export function Component() {
       author_ids: [],
     },
     validate: {
-      title: isNotEmpty('Il titolo e\' obbligatorio'),
-      abstract: isNotEmpty('L\'abstract e\' obbligatorio'),
-      publication_date: isNotEmpty('La data di pubblicazione e\' obbligatoria'),
-      author_ids: isNotEmpty('Seleziona almeno un autore'),
+      title: isNotEmpty("Il titolo è obbligatorio"),
+      abstract: isNotEmpty("L'abstract è obbligatorio"),
+      publication_date: isNotEmpty("La data di pubblicazione è obbligatoria"),
+      author_ids: isNotEmpty("Seleziona almeno un autore"),
     },
   });
 
@@ -65,7 +65,7 @@ export function Component() {
         notifications.show({
           color: 'red',
           title: 'Errore',
-          message: 'Impossibile caricare l\'articolo',
+          message: "Impossibile caricare l'articolo",
         });
         navigate('/articles');
       })
@@ -86,7 +86,7 @@ export function Component() {
       notifications.show({
         color: 'red',
         title: 'Errore',
-        message: 'Impossibile aggiornare l\'articolo',
+        message: "Impossibile aggiornare l'articolo",
       });
     } finally {
       setSubmitting(false);

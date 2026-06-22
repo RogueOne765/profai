@@ -28,7 +28,7 @@ export function Component() {
       description: '',
     },
     validate: {
-      source: isNotEmpty('La fonte e\' obbligatoria'),
+      source: isNotEmpty("La fonte è obbligatoria"),
     },
   });
 

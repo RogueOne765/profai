@@ -33,7 +33,7 @@ export function Component() {
     },
     validate: {
       title: isNotEmpty('Il titolo è obbligatorio'),
-      abstract: isNotEmpty('L\'abstract è obbligatorio'),
+      abstract: isNotEmpty("L'abstract è obbligatorio"),
       publication_date: isNotEmpty('La data di pubblicazione è obbligatoria'),
       author_ids: isNotEmpty('Seleziona almeno un autore'),
     },
@@ -77,7 +77,7 @@ export function Component() {
       notifications.show({
         color: 'red',
         title: 'Errore',
-        message: 'Impossibile creare l\'articolo',
+        message: "Impossibile creare l'articolo",
       });
     } finally {
       setLoading(false);

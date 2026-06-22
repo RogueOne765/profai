@@ -43,7 +43,7 @@ export function Component() {
       notifications.show({
         color: 'red',
         title: 'Errore',
-        message: 'Impossibile creare l\'autore',
+        message: "Impossibile creare l'autore",
       });
     } finally {
       setLoading(false);
