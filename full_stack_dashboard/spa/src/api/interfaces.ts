@@ -21,8 +21,16 @@ export interface CreateArticleInput {
   author_ids?: number[];
 }
 
-export interface Author {
+export interface Quote {
   id: number;
-  name: string;
-  surname: string;
+  source: string;
+  description: string | null;
+  article_id: number;
+  created_at: string;
+}
+
+export interface CreateQuoteInput {
+  source: string;
+  description?: string;
+  article_id: number;
 }

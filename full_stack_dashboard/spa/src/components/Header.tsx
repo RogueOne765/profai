@@ -10,7 +10,7 @@ export default function Header() {
     <>
       <Drawer opened={opened} onClose={close} />
 
-      <header className="sticky top-0 py-4">
+      <header className="py-4">
         <div className="flex gap-4 items-center">
           <ActionIcon
             size="lg"

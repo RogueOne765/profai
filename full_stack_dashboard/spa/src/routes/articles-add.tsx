@@ -36,7 +36,7 @@ export function Component() {
 
   useEffect(() => {
     authorRepo.getAll()
-      .then(setAuthors)
+      .then((authors) => setAuthors(authors))
       .catch(() => notifications.show({
         color: 'red',
         title: 'Errore',
@@ -71,7 +71,7 @@ export function Component() {
   }));
 
   return (
-    <section id="center">
+    <section id="center" className="pb-10">
       <h1>Aggiungi articolo</h1>
       <form className="flex justify-center w-full max-w-xl mx-auto" onSubmit={form.onSubmit(onSubmit)}>
         <div className="flex flex-col w-full gap-6">
