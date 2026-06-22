@@ -21,6 +21,18 @@ export const router = createBrowserRouter([
         lazy: () => import('./routes/articles-add'),
       },
       {
+        path: 'articles/edit/:id',
+        lazy: () => import('./routes/articles-edit'),
+      },
+      {
+        path: 'articles/:id',
+        lazy: () => import('./routes/articles-detail'),
+      },
+      {
+        path: 'authors/add',
+        lazy: () => import('./routes/authors-add'),
+      },
+      {
         path: 'quotes/add',
         lazy: () => import('./routes/quotes-add'),
       },

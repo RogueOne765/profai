@@ -13,6 +13,11 @@ export interface Article {
   authors: Author[];
 }
 
+export interface CreateAuthorInput {
+  name: string;
+  surname: string;
+}
+
 export interface CreateArticleInput {
   title: string;
   abstract: string;

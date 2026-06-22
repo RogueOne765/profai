@@ -5,13 +5,21 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    if (req.query.author_id) {
-      return res.json(await articleRepository.findByAuthor(Number(req.query.author_id)));
+    const { title, author, author_id, year, page, per_page } = req.query;
+    if (author_id && !title && !author && !year && !page && !per_page) {
+      return res.json(await articleRepository.findByAuthor(Number(author_id)));
+    }
+    if (title || author || year || page || per_page) {
+      return res.json(await articleRepository.findFiltered({
+        title,
+        author,
+        year,
+        page: page ? Number(page) : 1,
+        perPage: per_page ? Number(per_page) : 10,
+      }));
     }
     res.json(await articleRepository.findAll());
-  } catch (err) {
-    next(err);
-  }
+  } catch (err) { next(err); }
 });
 
 router.get('/:id', async (req, res, next) => {

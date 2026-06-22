@@ -29,8 +29,8 @@ export function Component() {
   });
 
   useEffect(() => {
-    articleRepo.getAll()
-      .then((articles) => setArticles(articles))
+    articleRepo.getFiltered({})
+      .then((paginatedArticles) => setArticles(paginatedArticles.data))
       .catch(() => notifications.show({
         color: 'red',
         title: 'Errore',

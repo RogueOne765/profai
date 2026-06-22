@@ -36,6 +36,44 @@ export class ArticleRepository {
     return this.groupArticles(rows);
   }
 
+  async findFiltered({ title, author, year, page = 1, perPage = 10 }) {
+    let query = this.withAuthors(db('articles'));
+
+    if (title) {
+      query = query.where('articles.title', 'like', `%${title}%`);
+    }
+    if (author) {
+      query = query.whereRaw(
+        "(authors.name || ' ' || authors.surname) LIKE ?",
+        [`%${author}%`],
+      );
+    }
+    if (year) {
+      query = query.whereRaw(
+        "CAST(strftime('%Y', articles.publication_date) AS INTEGER) = ?",
+        [Number(year)],
+      );
+    }
+
+    const [{ total }] = await query.clone()
+      .clearSelect()
+      .clearOrder()
+      .countDistinct('articles.id as total');
+
+    const rows = await query
+      .orderBy('articles.publication_date', 'desc')
+      .offset((page - 1) * perPage)
+      .limit(perPage);
+
+    return {
+      data: this.groupArticles(rows),
+      total,
+      page,
+      perPage,
+      totalPages: Math.ceil(total / perPage),
+    };
+  }
+
   async findById(id, trx) {
     const client = trx ? trx : db;
     const rows = await this.withAuthors(client.table('articles')).where('articles.id', id);

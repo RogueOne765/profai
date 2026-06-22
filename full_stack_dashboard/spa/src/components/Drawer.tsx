@@ -18,6 +18,7 @@ export default function Drawer({ opened, onClose }: DrawerProps) {
     <MantineDrawer opened={opened} onClose={onClose} title="Menu">
       <NavLink label="Articoli" onClick={() => navigateTo("/articles")} />
       <NavLink label="Aggiungi articolo" onClick={() => navigateTo("/articles/add")} />
+      <NavLink label="Aggiungi autore" onClick={() => navigateTo("/authors/add")} />
       <NavLink label="Aggiungi citazione" onClick={() => navigateTo("/quotes/add")} />
     </MantineDrawer>
   );

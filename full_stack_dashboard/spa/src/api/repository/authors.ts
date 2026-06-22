@@ -1,4 +1,4 @@
-import type {Author} from "../interfaces.ts";
+import type {Author, CreateAuthorInput} from "../interfaces.ts";
 import {client} from "../client.ts"
 
 export class AuthorRepository {
@@ -9,6 +9,10 @@ export class AuthorRepository {
   }
   async getById(id: number): Promise<Author> {
     const response = await client.get(`authors/${id}`);
+    return response.data;
+  }
+  async create(data: CreateAuthorInput): Promise<Author> {
+    const response = await client.post('authors', data);
     return response.data;
   }
 }
