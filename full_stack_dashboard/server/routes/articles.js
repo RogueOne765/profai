@@ -3,6 +3,7 @@
 * */
 import { Router } from 'express';
 import { articleRepository } from '../repository/articleRepository.js';
+import { authorRepository } from '../repository/authorRepository.js';
 import { validate, validateId } from '../middleware/validate.js';
 import {
   articleCreateSchema,
@@ -40,6 +41,13 @@ router.get('/:id', validateId, async (req, res, next) => {
 /* Crea un nuovo articolo */
 router.post('/', validate(articleCreateSchema), async (req, res, next) => {
   try {
+    const { author_ids } = req.body;
+    const existing = await authorRepository.findByIds(author_ids);
+    const existingIds = existing.map(a => a.id);
+    const missing = author_ids.filter(id => !existingIds.includes(id));
+    if (missing.length) {
+      return res.status(400).json({ error: `Authors not found: ${missing.join(', ')}` });
+    }
     res.status(201).json(await articleRepository.create(req.body));
   } catch (err) {
     next(err);

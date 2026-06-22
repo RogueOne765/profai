@@ -6,7 +6,7 @@ export const articleCreateSchema = z.object({
   abstract: z.string().nullable().optional(),
   publication_date: z.string().date().nullable().optional(),
   doi: z.string().nullable().optional(),
-  author_ids: z.array(z.number().int().positive()).optional().default([]),
+  author_ids: z.array(z.number().int().positive()).min(1, 'At least one author is required'),
 });
 
 /* Schema di validazione per aggiornamento articolo */

@@ -1,1 +1,1 @@
-Directory in cui sqlite salva il database
+Directory in cui sqlite salva i database

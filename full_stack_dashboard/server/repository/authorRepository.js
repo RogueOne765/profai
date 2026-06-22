@@ -20,6 +20,20 @@ export class AuthorRepository {
     return db(this.table).where({ id }).first();
   }
 
+  /* Recupera autori multipli per lista ID */
+  async findByIds(ids) {
+    return db(this.table).whereIn('id', ids);
+  }
+
+  /* Cerca un autore per nome e cognome, escludendo opzionalmente un ID */
+  async findByNameSurname(name, surname, excludeId) {
+    let query = db(this.table).where({ name, surname });
+    if (excludeId !== undefined) {
+      query = query.whereNot({ id: excludeId });
+    }
+    return query.first();
+  }
+
   /* Crea un nuovo autore */
   async create({ name, surname }) {
     const [id] = await db(this.table).insert({ name, surname });

@@ -31,6 +31,10 @@ router.get('/:id', validateId, async (req, res, next) => {
 /* Crea un nuovo autore */
 router.post('/', validate(authorCreateSchema), async (req, res, next) => {
   try {
+    const existing = await authorRepository.findByNameSurname(req.body.name, req.body.surname);
+    if (existing) {
+      return res.status(400).json({ error: 'Author with this name and surname already exists' });
+    }
     res.status(201).json(await authorRepository.create(req.body));
   } catch (err) {
     next(err);
@@ -40,8 +44,18 @@ router.post('/', validate(authorCreateSchema), async (req, res, next) => {
 /* Aggiorna un autore esistente */
 router.patch('/:id', validateId, validate(authorUpdateSchema), async (req, res, next) => {
   try {
+    const current = await authorRepository.findById(req.params.id);
+    if (!current) return res.status(404).json({ error: 'Not found' });
+
+    const name = req.body.name ?? current.name;
+    const surname = req.body.surname ?? current.surname;
+
+    const existing = await authorRepository.findByNameSurname(name, surname, req.params.id);
+    if (existing) {
+      return res.status(400).json({ error: 'Another author with this name and surname already exists' });
+    }
+
     const author = await authorRepository.update(req.params.id, req.body);
-    if (!author) return res.status(404).json({ error: 'Not found' });
     res.json(author);
   } catch (err) {
     next(err);
