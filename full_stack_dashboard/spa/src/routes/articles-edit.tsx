@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { TextInput, Textarea, Button, MultiSelect } from '@mantine/core';
+import {TextInput, Textarea, Button, MultiSelect, Card, Group, Title, Text} from '@mantine/core';
 import { useForm, isNotEmpty } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
 import { articleRepo } from '../api/repository/articles';
 import { authorRepo } from '../api/repository/authors';
-import type { Author } from '../api/interfaces';
+import { quoteRepo } from '../api/repository/quotes';
+import type { Author, Quote } from '../api/interfaces';
 
 interface ArticleForm {
   title: string;
@@ -19,6 +20,7 @@ export function Component() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [authors, setAuthors] = useState<Author[]>([]);
+  const [quotes, setQuotes] = useState<Quote[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
@@ -43,9 +45,11 @@ export function Component() {
     Promise.all([
       authorRepo.getAll(),
       articleRepo.getById(Number(id)),
+      quoteRepo.getByArticle(Number(id)),
     ])
-      .then(([authorsData, article]) => {
+      .then(([authorsData, article, quotesData]) => {
         setAuthors(authorsData);
+        setQuotes(quotesData);
         form.setValues({
           title: article.title,
           abstract: article.abstract,
@@ -91,10 +95,28 @@ export function Component() {
     label: `${author.name} ${author.surname}`,
   }));
 
-  if (loading) return <section id="center"><p>Loading...</p></section>;
+  const handleQuoteDelete = async (qid: number) => {
+    try {
+      await quoteRepo.delete(qid);
+      setQuotes((prev) => prev.filter((q) => q.id !== qid));
+      notifications.show({
+        color: 'green',
+        title: 'Successo',
+        message: 'Citazione eliminata con successo',
+      });
+    } catch {
+      notifications.show({
+        color: 'red',
+        title: 'Errore',
+        message: 'Impossibile eliminare la citazione',
+      });
+    }
+  };
+
+  if (loading) return <section><p>Loading...</p></section>;
 
   return (
-    <section id="center" className="pb-10">
+    <section className="pb-10">
       <h1>Modifica articolo</h1>
       <form className="flex justify-center w-full max-w-xl mx-auto" onSubmit={form.onSubmit(onSubmit)}>
         <div className="flex flex-col w-full gap-6">
@@ -147,6 +169,25 @@ export function Component() {
           </div>
         </div>
       </form>
+
+      <div className="mt-10">
+        <Title order={2}>Citazioni</Title>
+        {quotes.map((q) => (
+          <Card key={q.id} className="mt-4 max-w-xl mx-auto text-left">
+            <Title order={4}>{q.source}</Title>
+            <Text>{q.description}</Text>
+            <Group className="mt-2">
+              <Button size="compact-xs" onClick={() => navigate(`/quotes/edit/${q.id}`)}>
+                Modifica
+              </Button>
+              <Button size="compact-xs" color="red" onClick={() => handleQuoteDelete(q.id)}>
+                Elimina
+              </Button>
+            </Group>
+          </Card>
+        ))}
+      </div>
+
     </section>
   );
 }

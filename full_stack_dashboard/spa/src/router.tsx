@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
         lazy: () => import('./routes/quotes-add'),
       },
       {
+        path: 'quotes/edit/:id',
+        lazy: () => import('./routes/quotes-edit'),
+      },
+      {
         path: '*',
         lazy: () => import('./routes/not-found'),
       },
