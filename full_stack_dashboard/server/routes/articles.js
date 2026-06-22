@@ -3,31 +3,31 @@
 * */
 import { Router } from 'express';
 import { articleRepository } from '../repository/articleRepository.js';
+import { validate, validateId } from '../middleware/validate.js';
+import {
+  articleCreateSchema,
+  articleUpdateSchema,
+  articleFilterQuerySchema,
+} from '../schemas/articleSchema.js';
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', validate(articleFilterQuerySchema, 'query'), async (req, res, next) => {
   try {
-    const { title, author, author_id, year, page, per_page } = req.query;
-    if (author_id && !title && !author && !year && !page && !per_page) {
-      return res.json(await articleRepository.findByAuthor(Number(author_id)));
-    }
-    if (title || author || year || page || per_page) {
-      return res.json(await articleRepository.findFiltered({
-        title,
-        author,
-        year,
-        page: page ? Number(page) : 1,
-        perPage: per_page ? Number(per_page) : 10,
-      }));
-    }
-    res.json(await articleRepository.findAll());
+    const { title, author, year, page, per_page } = req.query;
+    return res.json(await articleRepository.findFiltered({
+      title,
+      author,
+      year,
+      page: page || 1,
+      perPage: per_page || 10,
+    }));
   } catch (err) { next(err); }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', validateId, async (req, res, next) => {
   try {
-    const article = await articleRepository.findById(Number(req.params.id));
+    const article = await articleRepository.findById(req.params.id);
     if (!article) return res.status(404).json({ error: 'Not found' });
     res.json(article);
   } catch (err) {
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate(articleCreateSchema), async (req, res, next) => {
   try {
     res.status(201).json(await articleRepository.create(req.body));
   } catch (err) {
@@ -43,9 +43,9 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id', validateId, validate(articleUpdateSchema), async (req, res, next) => {
   try {
-    const article = await articleRepository.update(Number(req.params.id), req.body);
+    const article = await articleRepository.update(req.params.id, req.body);
     if (!article) return res.status(404).json({ error: 'Not found' });
     res.json(article);
   } catch (err) {
@@ -53,9 +53,9 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', validateId, async (req, res, next) => {
   try {
-    const deleted = await articleRepository.delete(Number(req.params.id));
+    const deleted = await articleRepository.delete(req.params.id);
     if (!deleted) return res.status(404).json({ error: 'Not found' });
     res.status(204).end();
   } catch (err) {

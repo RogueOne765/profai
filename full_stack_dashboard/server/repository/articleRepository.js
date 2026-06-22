@@ -4,7 +4,7 @@
 import db from '../db/client.js';
 
 export class ArticleRepository {
-  withAuthors(qb) {
+  joinAuthors(qb) {
     return qb
       .leftJoin('article_authors', 'articles.id', 'article_authors.article_id')
       .leftJoin('authors', 'article_authors.author_id', 'authors.id')
@@ -34,39 +34,47 @@ export class ArticleRepository {
     return [...map.values()];
   }
 
-  async findAll() {
-    const rows = await this.withAuthors(db('articles')).orderBy('articles.publication_date', 'desc');
-    return this.groupArticles(rows);
-  }
-
   async findFiltered({ title, author, year, page = 1, perPage = 10 }) {
-    let query = this.withAuthors(db('articles'));
+    let baseQuery = db('articles');
 
     if (title) {
-      query = query.where('articles.title', 'like', `%${title}%`);
+      baseQuery = baseQuery.where('articles.title', 'like', `%${title}%`);
     }
     if (author) {
-      query = query.whereRaw(
-        "(authors.name || ' ' || authors.surname) LIKE ?",
-        [`%${author}%`],
-      );
+      baseQuery = baseQuery
+        .join('article_authors', 'articles.id', 'article_authors.article_id')
+        .join('authors', 'article_authors.author_id', 'authors.id')
+        .whereRaw(
+          "(authors.name || ' ' || authors.surname) LIKE ?",
+          [`%${author}%`],
+        );
     }
     if (year) {
-      query = query.whereRaw(
+      baseQuery = baseQuery.whereRaw(
         "CAST(strftime('%Y', articles.publication_date) AS INTEGER) = ?",
         [Number(year)],
       );
     }
 
-    const [{ total }] = await query.clone()
+    const [{ total }] = await baseQuery.clone()
       .clearSelect()
       .clearOrder()
       .countDistinct('articles.id as total');
 
-    const rows = await query
+    const ids = (await baseQuery.clone()
+      .clearSelect()
+      .select('articles.id', 'articles.publication_date')
+      .distinct()
       .orderBy('articles.publication_date', 'desc')
       .offset((page - 1) * perPage)
-      .limit(perPage);
+      .limit(perPage))
+      .map(r => r.id);
+
+    const rows = ids.length
+      ? await this.joinAuthors(db('articles'))
+          .whereIn('articles.id', ids)
+          .orderBy('articles.publication_date', 'desc')
+      : [];
 
     return {
       data: this.groupArticles(rows),
@@ -79,19 +87,7 @@ export class ArticleRepository {
 
   async findById(id, trx) {
     const client = trx ? trx : db;
-    const rows = await this.withAuthors(client.table('articles')).where('articles.id', id);
-    return this.groupArticles(rows)[0] ?? null;
-  }
-
-  async findByAuthor(authorId) {
-    const rows = await this.withAuthors(db('articles'))
-      .where('article_authors.author_id', authorId)
-      .orderBy('articles.publication_date', 'desc');
-    return this.groupArticles(rows);
-  }
-
-  async findByDoi(doi) {
-    const rows = await this.withAuthors(db('articles')).where('articles.doi', doi);
+    const rows = await this.joinAuthors(client.table('articles')).where('articles.id', id);
     return this.groupArticles(rows)[0] ?? null;
   }
 
@@ -109,6 +105,9 @@ export class ArticleRepository {
 
   async update(id, { author_ids, ...fields }) {
     return db.transaction(async (trx) => {
+      const exists = await trx('articles').where({ id }).first();
+      if (!exists) return null;
+
       if (Object.keys(fields).length) {
         await trx('articles').where({ id }).update(fields);
       }

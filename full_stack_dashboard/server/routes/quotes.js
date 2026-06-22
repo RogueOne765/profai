@@ -3,23 +3,25 @@
 * */
 import { Router } from 'express';
 import { quoteRepository } from '../repository/quoteRepository.js';
+import { validate, validateId } from '../middleware/validate.js';
+import {
+  quoteCreateSchema,
+  quoteUpdateSchema,
+} from '../schemas/quoteSchema.js';
 
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (_req, res, next) => {
   try {
-    if (req.query.article_id) {
-      return res.json(await quoteRepository.findByArticle(Number(req.query.article_id)));
-    }
     res.json(await quoteRepository.findAll());
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', validateId, async (req, res, next) => {
   try {
-    const quote = await quoteRepository.findById(Number(req.params.id));
+    const quote = await quoteRepository.findById(req.params.id);
     if (!quote) return res.status(404).json({ error: 'Not found' });
     res.json(quote);
   } catch (err) {
@@ -27,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', validate(quoteCreateSchema), async (req, res, next) => {
   try {
     res.status(201).json(await quoteRepository.create(req.body));
   } catch (err) {
@@ -35,9 +37,9 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id', validateId, validate(quoteUpdateSchema), async (req, res, next) => {
   try {
-    const quote = await quoteRepository.update(Number(req.params.id), req.body);
+    const quote = await quoteRepository.update(req.params.id, req.body);
     if (!quote) return res.status(404).json({ error: 'Not found' });
     res.json(quote);
   } catch (err) {
@@ -45,9 +47,9 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', validateId, async (req, res, next) => {
   try {
-    const deleted = await quoteRepository.delete(Number(req.params.id));
+    const deleted = await quoteRepository.delete(req.params.id);
     if (!deleted) return res.status(404).json({ error: 'Not found' });
     res.status(204).end();
   } catch (err) {
