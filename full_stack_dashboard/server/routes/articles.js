@@ -12,6 +12,7 @@ import {
 
 const router = Router();
 
+/* Recupera articoli con filtri e paginazione */
 router.get('/', validate(articleFilterQuerySchema, 'query'), async (req, res, next) => {
   try {
     const { title, author, year, page, per_page } = req.query;
@@ -25,6 +26,7 @@ router.get('/', validate(articleFilterQuerySchema, 'query'), async (req, res, ne
   } catch (err) { next(err); }
 });
 
+/* Recupera un singolo articolo per ID */
 router.get('/:id', validateId, async (req, res, next) => {
   try {
     const article = await articleRepository.findById(req.params.id);
@@ -35,6 +37,7 @@ router.get('/:id', validateId, async (req, res, next) => {
   }
 });
 
+/* Crea un nuovo articolo */
 router.post('/', validate(articleCreateSchema), async (req, res, next) => {
   try {
     res.status(201).json(await articleRepository.create(req.body));
@@ -43,6 +46,7 @@ router.post('/', validate(articleCreateSchema), async (req, res, next) => {
   }
 });
 
+/* Aggiorna un articolo esistente */
 router.patch('/:id', validateId, validate(articleUpdateSchema), async (req, res, next) => {
   try {
     const article = await articleRepository.update(req.params.id, req.body);
@@ -53,6 +57,7 @@ router.patch('/:id', validateId, validate(articleUpdateSchema), async (req, res,
   }
 });
 
+/* Elimina un articolo */
 router.delete('/:id', validateId, async (req, res, next) => {
   try {
     const deleted = await articleRepository.delete(req.params.id);

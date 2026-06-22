@@ -11,14 +11,16 @@ import {
 
 const router = Router();
 
+/* Recupera tutte le citazioni */
 router.get('/', async (_req, res, next) => {
   try {
-    res.json(await quoteRepository.findAll());
+    res.json(await quoteRepository.getAll());
   } catch (err) {
     next(err);
   }
 });
 
+/* Recupera una singola citazione per ID */
 router.get('/:id', validateId, async (req, res, next) => {
   try {
     const quote = await quoteRepository.findById(req.params.id);
@@ -29,6 +31,7 @@ router.get('/:id', validateId, async (req, res, next) => {
   }
 });
 
+/* Crea una nuova citazione */
 router.post('/', validate(quoteCreateSchema), async (req, res, next) => {
   try {
     res.status(201).json(await quoteRepository.create(req.body));
@@ -37,6 +40,7 @@ router.post('/', validate(quoteCreateSchema), async (req, res, next) => {
   }
 });
 
+/* Aggiorna una citazione esistente */
 router.patch('/:id', validateId, validate(quoteUpdateSchema), async (req, res, next) => {
   try {
     const quote = await quoteRepository.update(req.params.id, req.body);
@@ -47,6 +51,7 @@ router.patch('/:id', validateId, validate(quoteUpdateSchema), async (req, res, n
   }
 });
 
+/* Elimina una citazione */
 router.delete('/:id', validateId, async (req, res, next) => {
   try {
     const deleted = await quoteRepository.delete(req.params.id);

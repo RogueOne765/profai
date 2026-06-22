@@ -8,14 +8,16 @@ import { authorCreateSchema, authorUpdateSchema } from '../schemas/authorSchema.
 
 const router = Router();
 
+/* Recupera tutti gli autori */
 router.get('/', async (_req, res, next) => {
   try {
-    res.json(await authorRepository.findAll());
+    res.json(await authorRepository.getAll());
   } catch (err) {
     next(err);
   }
 });
 
+/* Recupera un singolo autore per ID */
 router.get('/:id', validateId, async (req, res, next) => {
   try {
     const author = await authorRepository.findById(req.params.id);
@@ -26,6 +28,7 @@ router.get('/:id', validateId, async (req, res, next) => {
   }
 });
 
+/* Crea un nuovo autore */
 router.post('/', validate(authorCreateSchema), async (req, res, next) => {
   try {
     res.status(201).json(await authorRepository.create(req.body));
@@ -34,6 +37,7 @@ router.post('/', validate(authorCreateSchema), async (req, res, next) => {
   }
 });
 
+/* Aggiorna un autore esistente */
 router.patch('/:id', validateId, validate(authorUpdateSchema), async (req, res, next) => {
   try {
     const author = await authorRepository.update(req.params.id, req.body);
@@ -44,6 +48,7 @@ router.patch('/:id', validateId, validate(authorUpdateSchema), async (req, res, 
   }
 });
 
+/* Elimina un autore */
 router.delete('/:id', validateId, async (req, res, next) => {
   try {
     const deleted = await authorRepository.delete(req.params.id);

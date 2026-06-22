@@ -4,26 +4,37 @@
 import db from '../db/client.js';
 
 export class AuthorRepository {
-  async findAll() {
-    return db('authors').orderBy('surname').orderBy('name');
+
+  /* Inizializza il nome della tabella */
+  constructor() {
+    this.table = 'authors'
   }
 
+  /* Recupera tutti gli autori ordinati per cognome e nome */
+  async getAll() {
+    return db(this.table).orderBy('surname').orderBy('name');
+  }
+
+  /* Recupera un singolo autore per ID */
   async findById(id) {
-    return db('authors').where({ id }).first();
+    return db(this.table).where({ id }).first();
   }
 
+  /* Crea un nuovo autore */
   async create({ name, surname }) {
-    const [id] = await db('authors').insert({ name, surname });
+    const [id] = await db(this.table).insert({ name, surname });
     return { id, name, surname };
   }
 
+  /* Aggiorna un autore esistente */
   async update(id, fields) {
-    await db('authors').where({ id }).update(fields);
+    await db(this.table).where({ id }).update(fields);
     return this.findById(id);
   }
 
+  /* Elimina un autore per ID */
   async delete(id) {
-    const count = await db('authors').where({ id }).delete();
+    const count = await db(this.table).where({ id }).delete();
     return count > 0;
   }
 }

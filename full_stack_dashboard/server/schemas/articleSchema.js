@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+/* Schema di validazione per creazione articolo */
 export const articleCreateSchema = z.object({
   title: z.string().min(1, 'Title is required').max(500),
   abstract: z.string().nullable().optional(),
@@ -8,6 +9,7 @@ export const articleCreateSchema = z.object({
   author_ids: z.array(z.number().int().positive()).optional().default([]),
 });
 
+/* Schema di validazione per aggiornamento articolo */
 export const articleUpdateSchema = z.object({
   title: z.string().min(1).max(500).optional(),
   abstract: z.string().nullable().optional(),
@@ -18,6 +20,7 @@ export const articleUpdateSchema = z.object({
   message: 'At least one field must be provided',
 });
 
+/* Schema di validazione per filtri di ricerca articoli */
 export const articleFilterQuerySchema = z.object({
   title: z.string().optional(),
   author: z.string().optional(),
