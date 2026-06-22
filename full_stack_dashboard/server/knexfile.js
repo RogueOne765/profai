@@ -1,3 +1,6 @@
+/*
+* File configurazione ORM Knex per interfaccia db SQlite
+* */
 import path from 'path';
 import { fileURLToPath } from 'url';
 

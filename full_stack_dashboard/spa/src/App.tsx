@@ -1,3 +1,9 @@
+/*
+* Wrapper principale dell'app, contiene:
+* - provider del framework Mantine (per UI)
+* - componente per visualizzazione notifiche (a livello globale nell'app)
+* - componente per proiezione contenuto rotte
+* */
 import { RouterProvider } from 'react-router-dom'
 import { MantineProvider } from '@mantine/core';
 import { router } from './router'

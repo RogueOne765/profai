@@ -1,3 +1,6 @@
+/*
+* Classe per gestione entità Autore
+* */
 import db from '../db/client.js';
 
 export class AuthorRepository {

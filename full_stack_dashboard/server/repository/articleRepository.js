@@ -1,3 +1,6 @@
+/*
+* Classe per gestione entità Articolo
+* */
 import db from '../db/client.js';
 
 export class ArticleRepository {

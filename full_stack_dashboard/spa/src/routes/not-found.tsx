@@ -1,3 +1,6 @@
+/*
+* Rotta di reindirizzamento per errori 404
+* */
 import { Link } from 'react-router-dom'
 
 export function Component() {

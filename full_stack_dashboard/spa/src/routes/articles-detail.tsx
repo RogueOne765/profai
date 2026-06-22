@@ -1,3 +1,6 @@
+/*
+* Rotta per visualizzazione dettaglio articolo
+* */
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, Text, Title, Group, Badge, Button } from '@mantine/core';

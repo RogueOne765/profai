@@ -1,3 +1,6 @@
+/*
+* Raccoglie le rotte per la gestione CRUD dell'entità autore
+* */
 import { Router } from 'express';
 import { authorRepository } from '../repository/authorRepository.js';
 

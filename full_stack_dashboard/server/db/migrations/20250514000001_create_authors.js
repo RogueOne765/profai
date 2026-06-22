@@ -1,3 +1,6 @@
+/*
+* Crea tabella per autori
+* */
 export async function up(knex) {
   if (await knex.schema.hasTable('authors')) return;
   return knex.schema.createTable('authors', (table) => {

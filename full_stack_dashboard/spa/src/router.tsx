@@ -1,4 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom'
+/*
+* Le rotte seguono logica precisa per l'interazione con le entità disponibili:
+* - /entity recupera lista elementi
+* - /entity/add form creazione elemento
+* - /entity/:id visualizzazione dettaglio elemento
+* - /entity/edit/:id modifica elemento
+* */
+import {createBrowserRouter, redirect} from 'react-router-dom'
 import BaseLayout from "./layouts/BaseLayout.tsx";
 
 export const router = createBrowserRouter([
@@ -8,9 +15,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        lazy: async () => {
-          return await import("./routes/home.tsx");
-        },
+        loader: () => redirect('/articles'),
       },
       {
         path: 'articles',

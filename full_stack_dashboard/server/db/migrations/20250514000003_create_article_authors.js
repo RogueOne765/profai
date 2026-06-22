@@ -1,3 +1,6 @@
+/*
+* Crea tabella bridge tra autori e articoli (relazione many to many)
+* */
 export async function up(knex) {
   if (await knex.schema.hasTable('article_authors')) return;
   return knex.schema.createTable('article_authors', (table) => {

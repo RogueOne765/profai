@@ -1,3 +1,6 @@
+/*
+* Rotta per creazione citazioni
+* */
 import { useEffect, useState } from 'react';
 import { TextInput, Button, Select } from '@mantine/core';
 import {useForm, isNotEmpty} from '@mantine/form';
@@ -15,6 +18,7 @@ interface QuoteForm {
 export function Component() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
 
   const form = useForm<QuoteForm>({
     initialValues: {
@@ -29,13 +33,27 @@ export function Component() {
   });
 
   useEffect(() => {
-    articleRepo.getFiltered({})
-      .then((paginatedArticles) => setArticles(paginatedArticles.data))
-      .catch(() => notifications.show({
-        color: 'red',
-        title: 'Errore',
-        message: 'Impossibile caricare gli articoli',
-      }));
+    articleRepo.getList({})
+      .then((paginatedArticles) => {
+        if (paginatedArticles?.data?.length === 0) {
+          setIsBtnDisabled(true)
+          notifications.show({
+            color: 'yellow',
+            title: 'Attenzione',
+            message: 'Nessun articolo presente in archivio. Per creare una citazione, procedere prima con la creazione di almeno un articolo.',
+          })
+        } else {
+          setArticles(paginatedArticles.data)
+        }
+      })
+      .catch(() => {
+        setIsBtnDisabled(true)
+        notifications.show({
+          color: 'red',
+          title: 'Errore',
+          message: 'Impossibile caricare gli articoli',
+        })
+      });
   }, []);
 
   const onSubmit = async (values: QuoteForm) => {
@@ -95,7 +113,7 @@ export function Component() {
             {...form.getInputProps('article_id')}
           />
 
-          <Button type="submit" loading={loading}>
+          <Button type="submit" loading={loading} disabled={isBtnDisabled}>
             Salva
           </Button>
         </div>

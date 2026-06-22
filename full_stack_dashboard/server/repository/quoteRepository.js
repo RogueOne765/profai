@@ -1,3 +1,6 @@
+/*
+* Classe per gestione entità Citazione
+* */
 import db from '../db/client.js';
 
 export class QuoteRepository {

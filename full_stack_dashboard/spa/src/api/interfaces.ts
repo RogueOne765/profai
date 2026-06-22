@@ -1,3 +1,7 @@
+/*
+* Raccoglie principali interfacce per entità, form e servizi API utilizzate nell'app
+* */
+
 export interface Author {
   id: number;
   name: string;

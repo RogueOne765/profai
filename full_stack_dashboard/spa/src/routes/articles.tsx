@@ -1,3 +1,6 @@
+/*
+* Rotta per visualizzazione lista articoli e filtri
+* */
 import { useEffect, useState, useMemo } from 'react';
 import { NavLink, TextInput, Group, Pagination, Text, Select, Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +32,7 @@ export function Component() {
     if (!yearFilter) return null;
     const num = Number(yearFilter);
     if (!Number.isInteger(num) || num < 1900 || num > currentYear) {
-      return `Year must be between 1900 and ${currentYear}`;
+      return `L'anno deve essere compreso tra ${currentYear}`;
     }
     return null;
   }, [yearFilter]);
@@ -44,7 +47,7 @@ export function Component() {
 
   const fetchArticles = (filters: Record<string, string>, pageNum: number) => {
     setLoading(true);
-    articleRepo.getFiltered(filters, pageNum)
+    articleRepo.getList(filters, pageNum)
       .then((result) => {
         setArticles(result.data);
         setTotalPages(result.totalPages);
@@ -127,7 +130,7 @@ export function Component() {
           {loading ? (
             <p>Loading...</p>
           ) : articles.length === 0 ? (
-            <Text c="dimmed">No articles found</Text>
+            <Text className="text-left">Nessun articolo trovato</Text>
           ) : (
             <>
               {articles.map((article) => (

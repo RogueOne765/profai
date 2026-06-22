@@ -1,3 +1,7 @@
+/*
+* Layout semplice utilizzato come base per tutte le rotte dell'applicazione.
+* Crea un container per gli elementi e inietta l'header.
+* */
 import { Outlet } from 'react-router-dom'
 import Header from "../components/Header.tsx";
 

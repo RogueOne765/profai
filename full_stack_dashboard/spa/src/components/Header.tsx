@@ -1,4 +1,4 @@
-import { ActionIcon } from "@mantine/core";
+import {ActionIcon} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { ListIcon } from "@phosphor-icons/react";
 import Drawer from "./Drawer";

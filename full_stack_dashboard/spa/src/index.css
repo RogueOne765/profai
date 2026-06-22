@@ -1,3 +1,6 @@
+/*
+ Foglio di stile principale dell'app. Contiene stile base di un tema Mantine + import per Tailwind CSS
+*/
 @import "tailwindcss";
 
 :root {

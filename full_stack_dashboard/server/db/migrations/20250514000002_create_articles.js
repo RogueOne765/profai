@@ -1,3 +1,6 @@
+/*
+* Crea tabella per articoli
+* */
 export async function up(knex) {
   if (await knex.schema.hasTable('articles')) return;
   return knex.schema.createTable('articles', (table) => {

@@ -1,3 +1,6 @@
+/*
+* Raccoglie le rotte per la gestione CRUD dell'entità articolo
+* */
 import { Router } from 'express';
 import { articleRepository } from '../repository/articleRepository.js';
 

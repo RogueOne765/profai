@@ -1,3 +1,6 @@
+/*
+* Rotta per modifica informazioni articolo
+* */
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {TextInput, Textarea, Button, MultiSelect, Card, Group, Title, Text} from '@mantine/core';

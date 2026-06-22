@@ -1,3 +1,6 @@
+/*
+* Rotta per creazione articolo
+* */
 import { useEffect, useState } from 'react';
 import { TextInput, Textarea, Button, MultiSelect } from '@mantine/core';
 import {useForm, isNotEmpty} from '@mantine/form';
@@ -17,6 +20,8 @@ interface ArticleForm {
 export function Component() {
   const [authors, setAuthors] = useState<Author[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
 
   const form = useForm<ArticleForm>({
     initialValues: {
@@ -36,12 +41,26 @@ export function Component() {
 
   useEffect(() => {
     authorRepo.getAll()
-      .then((authors) => setAuthors(authors))
-      .catch(() => notifications.show({
-        color: 'red',
-        title: 'Errore',
-        message: 'Impossibile caricare gli autori',
-      }));
+      .then((authors) => {
+        if (authors?.length === 0) {
+          setIsBtnDisabled(true)
+          notifications.show({
+            color: 'yellow',
+            title: 'Attenzione',
+            message: 'Nessun autore presente in archivio. Per creare un articolo, procedere prima con la creazione di almeno un autore.',
+          })
+        } else {
+          setAuthors(authors)
+        }
+      })
+      .catch(() => {
+        setIsBtnDisabled(true)
+        notifications.show({
+          color: 'red',
+          title: 'Errore',
+          message: 'Impossibile caricare gli autori',
+        })
+      });
   }, []);
 
   const onSubmit = async (values: ArticleForm) => {
@@ -114,7 +133,7 @@ export function Component() {
             onChange={(values) => form.setFieldValue('author_ids', values.map(Number))}
           />
 
-          <Button type="submit" loading={loading}>
+          <Button type="submit" loading={loading} disabled={isBtnDisabled}>
             Salva
           </Button>
         </div>
