@@ -1,5 +1,27 @@
 # Full Stack Dashboard
 
+## Installazione
+
+```bash
+# Installare dipendenze server
+cd /server && npm install
+
+# Eseguire script migrazione per db 
+cd /server && npm run migrate
+
+# Installare dipendenze webapp e generare bundle
+cd /spa && npm install && npm run build
+```
+
+## Avvio
+
+```bash
+# avvio server (espone servizi e webapp)
+cd /server && npm start
+```
+Quindi visitare http://localhost:3000
+
+
 ## Struttura
 
 ```
@@ -60,24 +82,3 @@ full_stack_dashboard/
     ├── public/           # asset statici
     └── dist/             # bundle di produzione
 ```
-
-## Installazione
-
-```bash
-# Installare dipendenze server
-cd /server && npm install
-
-# Eseguire script migrazione per db 
-cd /server && npm run migrate
-
-# Installare dipendenze webapp e generare bundle
-cd /spa && npm install && npm run build
-```
-
-## Avvio
-
-```bash
-# avvio server (espone servizi e webapp)
-cd /server && npm start
-```
-Quindi visitare http://localhost:3000
