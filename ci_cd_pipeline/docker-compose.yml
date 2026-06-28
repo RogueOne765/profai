@@ -1,0 +1,31 @@
+services:
+  jenkins:
+    image: jenkins/jenkins
+    environment:
+      DOCKER_TLS_CERTDIR: "/certs"
+    volumes:
+      - jenkins-docker-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+    ports:
+      - "8080:8080"
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+
+volumes:
+  jenkins-docker-certs:
+  jenkins-data:
+  prometheus-data:
+  grafana-data:
