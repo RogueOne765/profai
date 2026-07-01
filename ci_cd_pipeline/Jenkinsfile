@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building2..'
+                echo 'Installing dependencies...'
+                sh '/scripts/install_python_env.sh'
             }
         }
         stage('Test') {
