@@ -10,9 +10,9 @@ pipeline {
             steps {
                 echo 'Installing dependencies...'
                 sh '''
-                  python3 -m venv .venv
-                  && source .venv/bin/activate
-                  && pip install --no-cache-dir pylint pylint-json2html pip-audit
+                  python3 -m venv .venv \
+                  && source .venv/bin/activate \
+                  && pip install --no-cache-dir pylint pylint-json2html pip-audit \
                   && pip install --quiet --no-cache-dir -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt"
                 '''
             }
@@ -24,8 +24,8 @@ pipeline {
 
                 sh 'mkdir -p reports'
                 sh '''
-                  source .venv/bin/activate
-                  && pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE/ci_cd_pipeline/api"
+                  source .venv/bin/activate \
+                  && pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE/ci_cd_pipeline/api" \
                   && python3 -m pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
             }
