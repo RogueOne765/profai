@@ -1,4 +1,8 @@
 #!/bin/bash
+set -e
 
-pip3 install --quiet --no-cache-dir --break-system-packages pytest pylint "$WORKSPACE"/ci_cd_pipeline/requirements.txt
+#installa dipendenze
+pip3 install --quiet --no-cache-dir --break-system-packages pytest pylint "$WORKSPACE"/ci_cd_pipeline/api/requirements.txt
+
+# esegue pylint
 pylint -f parseable "$WORKSPACE"/app | tee pylint.out
