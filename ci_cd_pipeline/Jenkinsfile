@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
+                sh 'chmod +x ./ci_cd_pipeline/scripts/install_python_env.sh'
                 sh './ci_cd_pipeline/scripts/install_python_env.sh'
             }
         }
