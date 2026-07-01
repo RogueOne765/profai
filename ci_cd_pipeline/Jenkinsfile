@@ -19,7 +19,7 @@ pipeline {
                 echo 'Running tests'
                 sh 'mkdir -p reports'
                 sh '''
-                  source .venv/bin/activate \
+                  . .venv/bin/activate \
                   && pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE/ci_cd_pipeline/api" \
                   && python3 -m pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
