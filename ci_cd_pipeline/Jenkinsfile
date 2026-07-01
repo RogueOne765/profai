@@ -5,8 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'chmod +x ./ci_cd_pipeline/scripts/install_python_env.sh'
-                sh './ci_cd_pipeline/scripts/install_python_env.sh'
+                try {
+                    sh 'chmod +x ./ci_cd_pipeline/scripts/install_python_env.sh'
+                    sh './ci_cd_pipeline/scripts/install_python_env.sh'
+                } catch (err) {
+                    echo "Caught: ${err}"
+                    currentBuild.result = 'FAILURE'
+                }
             }
         }
         stage('Test') {
