@@ -24,16 +24,32 @@ services:
       retries: 10
       start_period: 10s
 
-  jenkins-agent:
-    build: ./agent
+  jenkins-agent-python:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile-python
     depends_on:
       jenkins:
         condition: service_healthy
     environment:
       JENKINS_URL: "${JENKINS_URL}"
-      JENKINS_SECRET: "${JENKINS_SECRET}"
-      JENKINS_AGENT_NAME: "${JENKINS_AGENT_NAME}"
-      JENKINS_AGENT_WORKDIR: "/home/jenkins/agent"
+      JENKINS_SECRET: "${PY_JENKINS_SECRET}"
+      JENKINS_AGENT_NAME: "${PY_JENKINS_AGENT_NAME}"
+      JENKINS_AGENT_WORKDIR: "${JENKINS_AGENT_WORKDIR}"
+      JENKINS_WEB_SOCKET: "${JENKINS_WEB_SOCKET}"
+
+  jenkins-agent-node:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile-node
+    depends_on:
+      jenkins:
+        condition: service_healthy
+    environment:
+      JENKINS_URL: "${JENKINS_URL}"
+      JENKINS_SECRET: "${NODE_JENKINS_SECRET}"
+      JENKINS_AGENT_NAME: "${NODE_JENKINS_AGENT_NAME}"
+      JENKINS_AGENT_WORKDIR: "${JENKINS_AGENT_WORKDIR}"
       JENKINS_WEB_SOCKET: "${JENKINS_WEB_SOCKET}"
 
   prometheus:

@@ -1,8 +1,14 @@
 pipeline {
     agent any
+    environment {
+        RAILWAY_TOKEN = credentials('RAILWAY_TOKEN')
+        RAILWAY_PROJECT_ID = credentials('RAILWAY_PROJECT_ID')
+        RAILWAY_SERVICE_ID = credentials('RAILWAY_SERVICE_ID')
 
+    }
     stages {
         stage('Build') {
+            agent { label 'python-exec' }
             steps {
                 echo 'Installing dependencies...'
                 script {
@@ -25,9 +31,16 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+            agent { label 'node-exec' }
+            when {
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS'
+                }
             }
+            steps {
+                sh 'railway up --service "$RAILWAY_SERVICE_ID"'
+            }
+
         }
     }
 }
