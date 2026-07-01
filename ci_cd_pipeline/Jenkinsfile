@@ -29,7 +29,7 @@ pipeline {
                 echo 'Testing..'
                 sh 'mkdir -p reports'
                 sh 'pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE"/"ci_cd_pipeline/api" || true'
-                sh 'pip-audit -r requirements.txt --format markdown --output reports/pip-audit-report.md'
+                sh 'pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md'
             }
         }
         stage('Deploy') {

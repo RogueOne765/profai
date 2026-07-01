@@ -7,6 +7,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir --break-system-packages pytest pylint mypy
+RUN pip3 install --no-cache-dir --break-system-packages pylint pylint-json2html pip-audit
 
 USER jenkins
