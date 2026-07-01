@@ -5,12 +5,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Installing dependencies...'
-                try {
-                    sh 'chmod +x ./ci_cd_pipeline/scripts/install_python_env.sh'
-                    sh './ci_cd_pipeline/scripts/install_python_env.sh'
-                } catch (err) {
-                    echo "Caught: ${err}"
-                    currentBuild.result = 'FAILURE'
+                script {
+                  try {
+                      sh 'chmod +x ./ci_cd_pipeline/scripts/install_python_env.sh'
+                      sh './ci_cd_pipeline/scripts/install_python_env.sh'
+                  } catch (err) {
+                      echo "Caught: ${err}"
+                      currentBuild.result = 'FAILURE'
+                      error "Lo script di installazione è fallito: ${err.getMessage()}"
+                  }
                 }
             }
         }
