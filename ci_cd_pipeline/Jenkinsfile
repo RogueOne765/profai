@@ -2,9 +2,7 @@ pipeline {
     agent any
     environment {
         RAILWAY_TOKEN = credentials('RAILWAY_TOKEN')
-        RAILWAY_PROJECT_ID = credentials('RAILWAY_PROJECT_ID')
         RAILWAY_SERVICE_ID = credentials('RAILWAY_SERVICE_ID')
-
     }
     stages {
         stage('Build') {
@@ -25,9 +23,13 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Test Python source code') {
+            agent { label 'python-exec' }
             steps {
                 echo 'Testing..'
+                sh 'mkdir -p reports'
+                sh 'pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE"/"ci_cd_pipeline/api" || true'
+                sh 'pip-audit -r requirements.txt --format markdown --output reports/pip-audit-report.md'
             }
         }
         stage('Deploy') {
@@ -41,6 +43,13 @@ pipeline {
                 sh 'railway up --service "$RAILWAY_SERVICE_ID"'
             }
 
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'reports/**/*',
+                             fingerprint: true,
+                             allowEmptyArchive: true
         }
     }
 }
