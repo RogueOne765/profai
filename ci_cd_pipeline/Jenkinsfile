@@ -5,23 +5,18 @@ pipeline {
         RAILWAY_SERVICE_ID = credentials('RAILWAY_SERVICE_ID')
     }
     stages {
-        stage('Build') {
+        stage('Build & test') {
             agent { label 'python-exec' }
             steps {
                 echo 'Installing dependencies...'
                 sh '''
                   python3 -m venv .venv \
-                  && source .venv/bin/activate \
+                  && . .venv/bin/activate \
                   && pip install --no-cache-dir pylint pylint-json2html pip-audit \
                   && pip install --quiet --no-cache-dir -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt"
                 '''
-            }
-        }
-        stage('Test Python source code') {
-            agent { label 'python-exec' }
-            steps {
-                echo 'Testing..'
 
+                echo 'Running tests'
                 sh 'mkdir -p reports'
                 sh '''
                   source .venv/bin/activate \
