@@ -9,16 +9,11 @@ pipeline {
             agent { label 'python-exec' }
             steps {
                 echo 'Installing dependencies...'
-                script {
-                    try {
-                        sh 'chmod +x $WORKSPACE/ci_cd_pipeline/scripts/install_python_env.sh'
-                        sh '$WORKSPACE/ci_cd_pipeline/scripts/install_python_env.sh'
-                    } catch (err) {
-                        echo "Caught: ${err}"
-                        currentBuild.result = 'FAILURE'
-                        error "Lo script di installazione è fallito: ${err.getMessage()}"
-                    }
-                }
+                sh '''
+                  python3 -m venv .venv
+                  .venv/bin/pip install --no-cache-dir pylint pylint-json2html pip-audit
+                  .venv/bin/pip install --quiet --no-cache-dir -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt"
+                '''
             }
         }
         stage('Test Python source code') {
@@ -28,9 +23,8 @@ pipeline {
 
                 sh 'mkdir -p reports'
                 sh '''
-                  . .venv/bin/activate
-                  pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE/ci_cd_pipeline/api"
-                  python3 -m pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
+                  .venv/bin/python -m pylint --load-plugins=pylint_json2html --output-format=jsonextended:reports/pylint.html "$WORKSPACE/ci_cd_pipeline/api"
+                  .venv/bin/python -m python3 -m pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
             }
         }
