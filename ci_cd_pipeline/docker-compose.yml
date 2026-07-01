@@ -16,6 +16,25 @@ services:
       - jenkins-data:/var/jenkins_home
     ports:
       - "8080:8080"
+      - "50000:50000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/login" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  jenkins-agent:
+    build: ./agent
+    depends_on:
+      jenkins:
+        condition: service_healthy
+    environment:
+      JENKINS_URL: "${JENKINS_URL}"
+      JENKINS_SECRET: "${JENKINS_SECRET}"
+      JENKINS_AGENT_NAME: "${JENKINS_AGENT_NAME}"
+      JENKINS_AGENT_WORKDIR: "/home/jenkins/agent"
+      JENKINS_WEB_SOCKET: "${JENKINS_WEB_SOCKET}"
 
   prometheus:
     image: prom/prometheus
