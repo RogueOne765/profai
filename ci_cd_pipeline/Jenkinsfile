@@ -11,10 +11,8 @@ pipeline {
                 echo 'Installing dependencies...'
                 script {
                     try {
-                        dir('ci_cd_pipeline') {
-                            sh 'chmod +x ./scripts/install_python_env.sh'
-                            sh './scripts/install_python_env.sh'
-                        }
+                        sh 'chmod +x $WORKSPACE/scripts/install_python_env.sh'
+                        sh '$WORKSPACE/scripts/install_python_env.sh'
                     } catch (err) {
                         echo "Caught: ${err}"
                         currentBuild.result = 'FAILURE'
