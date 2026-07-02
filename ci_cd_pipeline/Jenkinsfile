@@ -23,6 +23,9 @@ pipeline {
                   pylint-json2html -f jsonextended -o reports/pylint.html reports/pylint.json
                   pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
+
+                zip zipFile: 'reports.zip', archive: false, dir: 'reports'
+                archiveArtifacts artifacts: 'reports.zip', fingerprint: true,  allowEmptyArchive: true
             }
         }
         stage('Deploy') {
@@ -33,16 +36,14 @@ pipeline {
                 }
             }
             steps {
-                sh 'railway up --service "$RAILWAY_SERVICE_ID"'
+                sh '# railway up --service "$RAILWAY_SERVICE_ID"'
             }
 
         }
     }
     post {
         always {
-            archiveArtifacts artifacts: 'reports/**/*',
-                             fingerprint: true,
-                             allowEmptyArchive: true
+            copyArtifacts filter: 'reports.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
         }
     }
 }
