@@ -24,7 +24,11 @@ pipeline {
                   pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
 
-                env.REPORTS_ARCHIVE = "reports.tar.gz"
+                echo 'Archiving reports...'
+                script {
+                    env.REPORTS_ARCHIVE = "reports.tar.gz"
+                }
+
                 sh 'tar -czvf $REPORTS_ARCHIVE reports'
                 archiveArtifacts artifacts: env.REPORTS_ARCHIVE, fingerprint: true,  allowEmptyArchive: true
             }
