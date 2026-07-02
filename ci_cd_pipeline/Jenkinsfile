@@ -24,7 +24,7 @@ pipeline {
                   pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
 
-                zip zipFile: 'reports.zip', archive: false, dir: 'reports'
+                sh 'tar -czvf reports.tar.gz reports'
                 archiveArtifacts artifacts: 'reports.zip', fingerprint: true,  allowEmptyArchive: true
             }
         }
