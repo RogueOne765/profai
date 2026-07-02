@@ -24,8 +24,9 @@ pipeline {
                   pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
                 '''
 
-                sh 'tar -czvf reports.tar.gz reports'
-                archiveArtifacts artifacts: 'reports.zip', fingerprint: true,  allowEmptyArchive: true
+                env.REPORTS_ARCHIVE = "reports.tar.gz"
+                sh 'tar -czvf $REPORTS_ARCHIVE reports'
+                archiveArtifacts artifacts: env.REPORTS_ARCHIVE, fingerprint: true,  allowEmptyArchive: true
             }
         }
         stage('Deploy') {
@@ -43,7 +44,7 @@ pipeline {
     }
     post {
         always {
-            copyArtifacts filter: 'reports.zip', fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
+            copyArtifacts filter: env.REPORTS_ARCHIVE, fingerprintArtifacts: true, projectName: env.JOB_NAME, selector: specific(env.BUILD_NUMBER)
         }
     }
 }
