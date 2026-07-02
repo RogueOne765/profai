@@ -1,5 +1,6 @@
 ### Jenkins
 - setup di base iniziale (primo accesso e creazione utenza) e installazione plugin raccomandati
+- installare plugin Copy Artifacts (https://plugins.jenkins.io/copyartifact/)
 - creare due nodi in dashboard jenkins, uno per esecuzione python(label=python-exec) ed uno per esecuzione node(label=node-exec)
 - copiare nome e secret del nodo creato e inserirli nel file .env
 - riavviare i container dei nodi agente jenkins

@@ -21,7 +21,7 @@ pipeline {
                   . .venv/bin/activate
                   pylint --fail-under=5.0 --load-plugins=pylint_json2html --output-format=jsonextended "$WORKSPACE/ci_cd_pipeline/api" > reports/pylint.json || true
                   pylint-json2html -f jsonextended -o reports/pylint.html reports/pylint.json
-                  pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md
+                  pip-audit -r "$WORKSPACE/ci_cd_pipeline/api/requirements.txt" --format markdown --output reports/pip-audit-report.md 2>&1
                 '''
 
                 echo 'Archiving reports...'
@@ -41,7 +41,7 @@ pipeline {
                 }
             }
             steps {
-                sh '# railway up --service "$RAILWAY_SERVICE_ID"'
+                sh 'railway up --service "$RAILWAY_SERVICE_ID"'
             }
 
         }
